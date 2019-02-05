@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\DB; // to use Database (DB::select("query"))
+use Illuminate\Support\Facades\Input; //to use this Input::get('tag')
+use Illuminate\Support\Facades\Redirect; // to use this Redirect::to('url')
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 
+
 class blogController extends Controller
 {
+    public $u_id;
     //
     public function signup(Request $request){
         //echo "Good<br>";
@@ -45,6 +49,7 @@ class blogController extends Controller
         $request->session()->put('u_id',$data[0]->user_id);
         $request->session()->put('u_name',$data[0]->user_name);
         $request->session()->put('u_img',$data[0]->user_img);
+        $u_id = $data[0]->user_id;
         //echo "<pre>";
         $retrieve_pass = $data[0]->user_password;
         //echo "</pre>";
@@ -65,7 +70,15 @@ class blogController extends Controller
         //echo $today;
         $data = DB::select("select * from users_posts_tbl order by srl DESC");
         //echo $data[0]->user_img;
-        return view('profile',['data'=>$data]);
+        return view('blog_profile',['data'=>$data]);
+    }
+    public function profile(){
+        //get user_id from session key
+        $u_id = Input::get('u_id');
+
+        $data = DB::select("select * from users_posts_tbl where user_id='$u_id' order by srl DESC");
+        
+        return view('blog_profile',['data'=>$data]);
     }
 
     public function create_post(Request $request){

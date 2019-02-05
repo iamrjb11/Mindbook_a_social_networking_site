@@ -1,6 +1,14 @@
 <?php
-Session::put('title','Profile');
-include "../resources/views/resourcesFile.php";
+//take a get url value inside blade template
+$r=Request::get('u_id');
+//echo $r;
+if( $r ){
+  Session::put('title',$data[0]->user_name.' | Profile');
+ 
+}
+else
+  Session::put('title','Home');
+include "../resources/views/templates/resourcesFile.php";
 
 
 
@@ -49,10 +57,10 @@ include "../resources/views/resourcesFile.php";
   <div>
     <ul class="navbar-nav">
         <li class="nav-item" style="padding-right:20px;">
-        <a class="nav-link" href="#"><img src="{{ Session::get('u_img') }}" class="img-rounded" style="width:25px;height:25px"> {{Session::get('u_name')}}</a>
+        <a class="nav-link" href="http://localhost:8000/blog/profile?u_id={{Session::get('u_id')}}"><img src="{{ Session::get('u_img') }}" class="img-rounded" style="width:25px;height:25px"> {{Session::get('u_name')}}</a>
         </li>
         <li class="nav-item" style="padding-right:20px;">
-        <a class="nav-link" href="#">Home</a>
+        <a class="nav-link" href="http://localhost:8000/blog/home">Home</a>
         </li>
         <li class="nav-item" style="padding-right:20px;">
         <a class="nav-link" href="http://localhost:8000/blog/logout">Log out</a>

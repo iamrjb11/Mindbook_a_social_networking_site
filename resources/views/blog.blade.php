@@ -1,6 +1,6 @@
 <?php
 Session::put('title','Blog');
-include "../resources/views/resourcesFile.php";
+include "../resources/views/templates/resourcesFile.php";
 
 
 ?>
