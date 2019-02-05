@@ -1,8 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\Redirect;
 
 class blogController extends Controller
 {
@@ -22,9 +25,10 @@ class blogController extends Controller
         
         $u_email = $request->input('email');
         $u_password = $request->input('password');
-        $data = DB::select("select user_password from user_info_tbl where user_email='$u_email' ");
+        $data = DB::select("select user_id,user_password from user_info_tbl where user_email='$u_email' ");
         
-        //echo $pass;
+        $request->session()->put('user_id',$data[0]->user_id);
+        echo $request->session()->put('user_id',$data[0]->user_id);
         //echo "<pre>";
         $retrieve_pass = $data[0]->user_password;
         //echo "</pre>";
@@ -35,5 +39,19 @@ class blogController extends Controller
         }
         else 
             return view('blog');
+    }
+    public function home(){
+        echo "DONE";
+    }
+
+    public function create_post(Request $request){
+        
+        $u_id=$request->session()->get('user_id');
+        echo $u_id;
+        $status = $request->get('status');
+        DB::insert("insert into users_posts_tbl (user_id,status,time,likes) values(?,?,?,?)",[$u_id,$status,"10pm , 06-Feb-2019",0]);
+        
+        return Redirect::to('/blog/home');
+
     }
 }

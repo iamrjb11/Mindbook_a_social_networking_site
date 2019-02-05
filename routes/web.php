@@ -18,6 +18,8 @@ Route::get('/blog',function(){
 });
 Route::post('/blog/signup','blogController@signup');
 Route::post('/blog/login','blogController@login');
+Route::get('/blog/home','blogController@home');
+Route::post('/blog/create_post','blogController@create_post');
 
 
 
