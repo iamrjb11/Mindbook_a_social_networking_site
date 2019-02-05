@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Redirect;
+
 
 class blogController extends Controller
 {
@@ -42,6 +42,8 @@ class blogController extends Controller
     }
     public function home(){
         echo "DONE";
+        $data = DB::select("select * from users_posts_tbl order by srl DESC");
+        return view('profile',['data'=>$data]);
     }
 
     public function create_post(Request $request){
@@ -51,7 +53,7 @@ class blogController extends Controller
         $status = $request->get('status');
         DB::insert("insert into users_posts_tbl (user_id,status,time,likes) values(?,?,?,?)",[$u_id,$status,"10pm , 06-Feb-2019",0]);
         
-        return Redirect::to('/blog/home');
+        return redirect('/blog/home');
 
     }
 }
