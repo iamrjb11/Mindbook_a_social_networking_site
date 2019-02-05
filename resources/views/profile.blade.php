@@ -10,7 +10,7 @@ include "../resources/views/resourcesFile.php";
     .outlayer{
      
       background-color:white;
-      width:56%;
+      width:57%;
       height:40%;
       padding:20px;
     }
@@ -35,8 +35,8 @@ include "../resources/views/resourcesFile.php";
 
 
 <div class="container-fluid">
-  <div class="navbar-header"  >
-    <a class="navbar-brand" href="#">My Blogs</a>
+  <div class="navbar-header"  style="padding-right:250px;">
+    <a class="navbar-brand" href="http://localhost:8000/blog/home" style="font-size: 30px;">My Blogs</a>
     <form class="navbar-form navbar-left" method="post" action="{{ URL::to('/blog/login') }}">
   {{ csrf_field() }}
     <div class="form-group">
@@ -49,13 +49,13 @@ include "../resources/views/resourcesFile.php";
   <div>
     <ul class="navbar-nav">
         <li class="nav-item" style="padding-right:20px;">
-        <a class="nav-link" href="#"><img src="/images/color.JPG" class="img-rounded" style="width:25px;height:25px"> Name</a>
+        <a class="nav-link" href="#"><img src="{{ Session::get('u_img') }}" class="img-rounded" style="width:25px;height:25px"> {{Session::get('u_name')}}</a>
         </li>
         <li class="nav-item" style="padding-right:20px;">
         <a class="nav-link" href="#">Home</a>
         </li>
         <li class="nav-item" style="padding-right:20px;">
-        <a class="nav-link" href="#">Log out</a>
+        <a class="nav-link" href="http://localhost:8000/blog/logout">Log out</a>
         </li>
     </ul>
   </div>
@@ -70,7 +70,7 @@ include "../resources/views/resourcesFile.php";
         {{ csrf_field() }}
         <div>Create a post</div>
         <textarea rows="5" class="form-control" name="status" style="margin: 0px 115px 0px 0px; height: 150px; width: 626px;" placeholder="What's on your mind ... ? "></textarea>
-        <div  style=""><input type="submit" name="" value="Share" class="btn btn-primary" style="width:56%;"></div>
+        <div  style=""><input type="submit" name="" value="Share" class="btn btn-primary" style="width:57%;"></div>
     </form>
 </div><br> 
 <div id="sts" style="padding-left:250px;">
@@ -79,8 +79,8 @@ include "../resources/views/resourcesFile.php";
 <br>
   <div class="outlayer">
     <div>
-    <img src="/images/color.JPG"  class="sts_img">
-    <a class="sts_name" href="#"> Name : {{$dt->user_id}}</a><p>Time : {{ $dt->time}}</p>
+    <img src="{{$dt->user_img}}" class="sts_img">
+    <a class="sts_name" href="#">{{$dt->user_name}}</a><p>Time : <span style="color:#767a82">{{ $dt->time}}</span></p>
       
       <p>{{$dt->status}}</p>
     </div><br>

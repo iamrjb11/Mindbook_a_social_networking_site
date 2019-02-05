@@ -16,6 +16,10 @@ Route::get('/blog',function(){
     
     return view('blog');
 });
+Route::get('/blog/logout',function(){
+    
+    return view('blog');
+});
 Route::post('/blog/signup','blogController@signup');
 Route::post('/blog/login','blogController@login');
 Route::get('/blog/home','blogController@home');

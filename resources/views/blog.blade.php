@@ -29,13 +29,14 @@ include "../resources/views/resourcesFile.php";
 <div style="float:left">
   <img src="/images/color.JPG">
 </div>
-<form method="post" action="{{ URL::to('/blog/signup') }}">
+<form method="post" enctype="multipart/form-data" action="{{ URL::to('/blog/signup') }}">
   {{ csrf_field() }}
   <div  style="float:right;padding-right:50px;width:450px;">
     <input type="text" name="u_name" value="" class="form-control" placeholder="Full Name"><br>
     <input type="text" name="u_email" value="" class="form-control" placeholder="Email"><br>
     <input type="text" name="u_password" value="" class="form-control" placeholder="Password"><br>
     <input type="text" name="u_mobile" value="" class="form-control" placeholder="Mobile Number"><br>
+    <input type="file" name="u_img" value="" class="form-control"><br>
     <input type="submit" name="" class="btn btn-primary" value="Sing up">
   </div>
 </form>
