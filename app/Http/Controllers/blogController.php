@@ -21,6 +21,10 @@ class blogController extends Controller
         $u_password = $request->input('u_password');
         $u_mobile = $request->input('u_mobile');
         $u_img="Null";
+
+        $this->validate($request, [
+            'u_img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
         
         if ($request->hasFile('u_img')) {
             //echo "Good2<br>";

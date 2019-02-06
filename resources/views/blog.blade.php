@@ -27,7 +27,8 @@ include "../resources/views/templates/resourcesFile.php";
 
 </nav>
 <div style="float:left">
-  <img src="/images/color.JPG">
+  <img src="/images/23.png" style="padding-top:30px;"><br>
+  <p style="text-align:center;font-size:25px;font-weight:bold;">Think and write whats are your mind ....</>
 </div>
 <form method="post" enctype="multipart/form-data" action="{{ URL::to('/blog/signup') }}">
   {{ csrf_field() }}
