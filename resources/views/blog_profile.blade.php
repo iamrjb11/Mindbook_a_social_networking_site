@@ -80,14 +80,14 @@ include "../resources/views/templates/resourcesFile.php";
 </nav>
 
 <div>
-    <form method="post" action="{{ URL::to('/blog/create_post') }}" style="padding-left:250px;">
+    <form method="post" action="{{ URL::to('/blog/create_post') }}" style="padding-left:300px;">
         {{ csrf_field() }}
-        <div>Create a post</div>
-        <textarea rows="5" class="form-control" name="status" style="margin: 0px 115px 0px 0px; height: 150px; width: 626px;" placeholder="What's on your mind ... ? "></textarea>
+        <div style="font-size:25px;font-weight:bold;">Create a post</div>
+        <textarea rows="5" class="form-control" name="status" style="margin: 0px 115px 0px 0px; height: 150px; width: 600px;" placeholder="What's on your mind ... ? "></textarea>
         <div  style=""><input type="submit" name="" value="Share" class="btn btn-primary" style="width:57%;"></div>
     </form>
 </div><br> 
-<div id="sts" style="padding-left:250px;">
+<div id="sts" style="padding-left:300px;">
 
 @foreach($data as $dt)
 <br>
