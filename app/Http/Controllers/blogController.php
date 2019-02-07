@@ -99,4 +99,14 @@ class blogController extends Controller
         return redirect('/blog/home');
 
     }
+    public function search(){
+        
+        $u_name= Input::get('s_value');
+        //echo $u_name;
+        $data = DB::select("select user_name from user_info_tbl where user_name like '%$u_name%' ");
+        //echo $data;
+    
+       
+        return view('search',['data'=>$data]);
+    }
 }

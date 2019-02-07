@@ -14,6 +14,7 @@ include "../resources/views/templates/resourcesFile.php";
 
 ?>
 <head>
+
   <style>
     .outlayer{
      
@@ -48,9 +49,14 @@ include "../resources/views/templates/resourcesFile.php";
     <form class="navbar-form navbar-left" method="post" action="{{ URL::to('/blog/login') }}">
   {{ csrf_field() }}
     <div class="form-group">
-      <input type="text" class="form-control" name="searchTxt" placeholder="Search">
+    <div class="dropdown">
+      <input type="text" class="form-control" onkeyup="search(this.value);" id="searchTxt" placeholder="Search" style="width:300px;">
+     
+      <div class="dropdown-content" id="drop_content">
+        
+      </div>
     </div>
-    <input type="submit" name="" class="btn btn-primary" value="Search">
+    </div>
   </form>
   </div>
   
