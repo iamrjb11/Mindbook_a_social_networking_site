@@ -3,10 +3,7 @@ function search(val){
     console.log("Search Value : "+search_value);
 
 
-    if(search_value==""){
-        document.getElementById("drop_content").innerHTML="Sry";
-    }
-    else{
+    if(search_value!=""){
     
     
      
@@ -26,6 +23,9 @@ function search(val){
         xhttp.open("GET","/blog/search?s_value="+search_value,true);
         xhttp.send();
 
+    }
+    else{
+        document.getElementById("drop_content").innerHTML = "";
     }
     
   }

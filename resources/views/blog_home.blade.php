@@ -19,18 +19,9 @@ include "../resources/views/templates/resourcesFile.php";
     .outlayer{
      
       background-color:white;
-      width:100%;
+      width:57%;
       height:40%;
       padding:20px;
-      border-radius:6px;
-      box-shadow: 0 0 20px rgba(0,0,0,.15);
-    }
-    .info_layer{
-      background-color:white;
-      width:400px;
-      height:40%;
-      padding:20px;
-      border:2px solid #007bff;
       border-radius:6px;
       box-shadow: 0 0 20px rgba(0,0,0,.15);
     }
@@ -41,13 +32,6 @@ include "../resources/views/templates/resourcesFile.php";
     .sts_img{
       width:45px;
       height:45px;
-    }
-    .pro_pic{
-      width:300px;
-      height:300px;
-      border-radius:6px;
-      border:2px solid #007bff;
-      box-shadow: 0 0 20px rgba(0,0,0,.15);
     }
     
     .sts_like{
@@ -97,42 +81,19 @@ include "../resources/views/templates/resourcesFile.php";
 </div>
 
 </nav>
-<div style="float:left;padding-left:5%;">
-    <div style="padding-left:12%;">
-    <img src="{{$data[0]->user_img}}" class="pro_pic">
-    </div><br>
-    <div class="info_layer">
-      <p style="color:black;font-size:25px;font-weight:bold;">{{Session::get('u_name')}}</p>
-      <p><span class="glyphicon glyphicon-briefcase"></span> Studied B.Sc in Computer Science & Engineering (CSE) at <span style="color:blue;">Khulna University</span></p>
-      <p><span class="glyphicon glyphicon-book"></span> Studied HSC in Science at <span style="color:blue;">BN Collage</span></p>
-      <p><span class="glyphicon glyphicon-book"></span> Studied SSC Science at <span style="color:blue;">Rotary School, Khulna</span></p>
-      <p><span class="glyphicon glyphicon-home"></span> Lives in <span style="color:blue;">Khulna</span></p>
-      <p><span class="glyphicon glyphicon-phone"></span> +88 <span style="color:blue;"> 01778338429</span></p>
-      <p><span class="glyphicon glyphicon-envelope"></span> <span style="color:blue;">iamrjb@gmail.com</span></p>
-    </div>
-    
 
-</div>
-<div style="float:right;padding-left:20px;padding-right:5%;">
-
-    <div>
-        <form method="post" action="{{ URL::to('/blog/create_post') }}">
+<div style="padding-top:0px;padding-left:5%">
+    <form method="post" action="{{ URL::to('/blog/create_post') }}">
         {{ csrf_field() }}
-        <p value="" style="width:700px;height:2px;background-color:#007bff;"></p>
         <div style="text-align:left;">
-          <div style="font-size:25px;font-weight:bold;">Create a post</>
+        <div style="font-size:25px;font-weight:bold;">Create a post</div>
         </div>
         <div>
-          <textarea rows="5" name="status" style="height: 150px; width: 100%;;border-radius:5px;padding-left:10px;padding-top:7px;border:1px solid #c5c5c5;" placeholder="What's on your mind ... ? "></textarea>
+        <textarea rows="5" name="status" style="margin: 0px opx 0px 0px; height: 150px; width: 57%;border-radius:5px;padding-left:10px;padding-top:7px;border:1px solid #c5c5c5;" placeholder="What's on your mind ... ? "></textarea>
         </div>
         <div>
-          <input type="submit" name="" value="Share" class="btn btn-primary" style="width:100%;">
-        </div>
-    
-        </form>
-    </div>
-
-</div>
+        <input type="submit" name="" value="Share" class="btn btn-primary" style="width:57%;"></div>
+    </form>
 <br> 
 <div id="sts" style="">
 @foreach($data as $dt)
@@ -152,9 +113,7 @@ include "../resources/views/templates/resourcesFile.php";
 
   
 </div>
-
-
-
+</div>
 
 </body>
 </html> 

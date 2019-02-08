@@ -13,8 +13,15 @@
 
 //For blog
 Route::get('/blog',function(){
+    $full=url()->current();
+    //return view('blog');
+    $crop = Request::getRequestUri();
+    //echo $crop;
+    $host = explode($crop,$full,2);
+    Session::put('host_name',$host[0]);
     
     return view('blog');
+    
 });
 Route::get('/blog/logout',function(){
     
@@ -26,6 +33,7 @@ Route::get('/blog/home','blogController@home');
 Route::get('/blog/profile','blogController@profile');
 Route::post('/blog/create_post','blogController@create_post');
 Route::get('/blog/search','blogController@search');
+Route::get('/blog/demo','blogController@demo');
 
 
 

@@ -9,10 +9,11 @@ include "../resources/views/templates/resourcesFile.php";
   .box{
     margin: auto;
     float:right;
-    padding-right:70px;
-    padding-left:20px;
-    padding-top:20px;
-    padding-bottom:20px;
+    position:auto;
+    padding-right:6%;
+    padding-left:2%;
+    padding-top:1%;
+    padding-bottom:1%;
     width:40%;
     border-left: 5px solid #9b2;
     box-shadow: 0 0 20px rgba(0,0,0,.15);
@@ -32,10 +33,10 @@ include "../resources/views/templates/resourcesFile.php";
 <nav class="navbar navbar-expand-sm bg-primary navbar-dark">
 
   <div class="container-fluid">
-    <div class="navbar-header"  style="padding-right:500px;">
+    <div class="navbar-header"  style="padding-right:500px;"><a href="#" style="color:white;font-size:27px;text-decoration: none;">
     
-      <a class="navbar-brand" href="#" style="padding-bottom:20px;"><img src="/images/22.png" alt="" style="width:40px;height:40px;"> </a>
-      <a class="navbar-brand" href="#" style="font-size:30px;">My Bolg</a>
+      <div style=""><img src="/images/111.png" alt="" style="width:40px;height:40px;"> My Bolg</div>
+      </a>
     </div>
     
     <form class="navbar-form navbar-left" method="post" action="{{ URL::to('/blog/login') }}">
@@ -63,6 +64,7 @@ include "../resources/views/templates/resourcesFile.php";
     <input type="text" name="u_mobile" value="" class="form-control" placeholder="Mobile Number"required><br>
     <input type="file" name="u_img" value="" class="form-control" required><br>
     <input type="submit" name="" class="btn btn-primary" value="Sing up">
+    
   </div>
 </form>
 </body>

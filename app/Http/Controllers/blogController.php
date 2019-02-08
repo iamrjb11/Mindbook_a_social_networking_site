@@ -74,7 +74,18 @@ class blogController extends Controller
         //echo $today;
         $data = DB::select("select * from users_posts_tbl order by srl DESC");
         //echo $data[0]->user_img;
-        return view('blog_profile',['data'=>$data]);
+        return view('blog_home',['data'=>$data]);
+    }
+    public function demo(){
+        //For Time
+        //echo date('H:i');
+        //echo date('d-m-Y')."<br>";
+        date_default_timezone_set("Asia/Dhaka");
+        $todays_time = date("g:i a , j F Y");  
+        //echo $today;
+        $data = DB::select("select * from users_posts_tbl order by srl DESC");
+        //echo $data[0]->user_img;
+        return view('demo',['data'=>$data]);
     }
     public function profile(){
         //get user_id from session key
