@@ -49,6 +49,7 @@
     background-image: none;
     border: 1px solid transparent;
     border-radius: 4px;
+    width:57%;
   }
  .mybtn .btn-primary {
     color: #fff;

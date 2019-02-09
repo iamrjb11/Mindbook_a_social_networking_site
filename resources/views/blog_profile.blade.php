@@ -16,6 +16,9 @@ include "../resources/views/templates/resourcesFile.php";
 <head>
 
   <style>
+    .mybtn{
+      width:100%
+    }
     .textarea{
       height: 150px; 
       width: 100%;
@@ -72,6 +75,13 @@ include "../resources/views/templates/resourcesFile.php";
       padding-left:5%;
       padding-right:5%;
     }
+    .float_left_container{
+      float:left;
+      padding-left:5%;
+    }
+    .pro_pic_layer{
+      padding-left:12%;
+    }
     @media only screen and (max-width: 500px){
       .searchTxt{
         width:100%;
@@ -100,7 +110,27 @@ include "../resources/views/templates/resourcesFile.php";
       }
       .float_right_container{
         float:left;
+        width:100%;
       }
+      .float_left_container{
+        padding-left:3%;
+        padding-right:3%;
+      }
+      .pro_pic_layer{
+        text-align:center;
+        padding-left:0%;
+      }
+      .pro_pic{
+      width:250px;
+      height:250px;
+      border-radius:6px;
+      border:2px solid #007bff;
+      box-shadow: 0 0 20px rgba(0,0,0,.15);
+    }
+    .info_layer{
+      width:100%;
+      
+    }
 }
   </style>
 </head>
@@ -145,8 +175,8 @@ include "../resources/views/templates/resourcesFile.php";
 </div>
 
 </nav>
-<div style="float:left;padding-left:5%;">
-    <div style="padding-left:12%;">
+<div class="float_left_container">
+    <div class="pro_pic_layer">
     <img src="{{$data[0]->user_img}}" class="pro_pic">
     </div><br>
     <div class="info_layer">
@@ -174,7 +204,7 @@ include "../resources/views/templates/resourcesFile.php";
           <textarea rows="5" name="status" class="textarea" placeholder="What's on your mind ... ? "></textarea>
         </div>
         <div>
-          <input type="submit" name="" value="Share" class="btn btn-primary">
+          <input type="submit" name="" value="Share" class="mybtn btn-primary">
         </div>
     
         </form>
