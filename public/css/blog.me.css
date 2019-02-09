@@ -1,3 +1,6 @@
+body{
+  background-color:#e9ebee;
+}
 .dropbtn {
     background-color: #4CAF50;
     color: white;
@@ -5,6 +8,7 @@
     font-size: 16px;
     border: none;
   }
+  
   
   .dropdown {
     position: relative;

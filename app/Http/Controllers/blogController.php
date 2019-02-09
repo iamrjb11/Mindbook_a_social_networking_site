@@ -120,4 +120,10 @@ class blogController extends Controller
        
         return view('search',['data'=>$data]);
     }
+    public function about(){
+        return view('blog_about');
+    }
+    public function settings(){
+        return view('blog_settings');
+    }
 }

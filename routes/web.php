@@ -33,6 +33,8 @@ Route::get('/blog/home','blogController@home');
 Route::get('/blog/profile','blogController@profile');
 Route::post('/blog/create_post','blogController@create_post');
 Route::get('/blog/search','blogController@search');
+Route::get('/blog/about','blogController@about');
+Route::get('/blog/settings','blogController@settings');
 Route::get('/blog/demo','blogController@demo');
 
 

@@ -180,8 +180,8 @@ include "../resources/views/templates/resourcesFile.php";
               <li class="dropdown-header" style="font-size:14px;color:blue;">{{Session::get('u_name')}}</li>
               <li class="divider"></li>
               
-              <li><a href="#"><span class="glyphicon glyphicon-user"></span> About</a></li>
-              <li><a href="#"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
+              <li><a href="{{Session::get('host_name')}}/blog/about"><span class="glyphicon glyphicon-user"></span> About</a></li>
+              <li><a href="{{Session::get('host_name')}}/blog/settings"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
               <li class="divider"></li>
               <li><a href="{{Session::get('host_name')}}/blog/logout"> <span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
             </ul>
