@@ -24,6 +24,23 @@ include "../resources/views/templates/resourcesFile.php";
     font-weight:bold;
     color:#f08080;
   }
+  @media only screen and (max-width: 700px){
+    .box{
+      margin: auto;
+      position:auto;
+      padding-left:2%;
+      padding-top:1%;
+      padding-bottom:3%;
+      width:100%;
+      border-left: 5px solid #9b2;
+      border-right: 5px solid #9b2;
+      box-shadow: 0 0 20px rgba(0,0,0,.15);
+    }
+    .web_name{
+      width:100%;
+      padding-left:20%;
+    }
+  } 
   </style>  
 </head>
 
@@ -35,7 +52,7 @@ include "../resources/views/templates/resourcesFile.php";
   <div class="container-fluid">
     <div class="navbar-header"  style="padding-right:500px;"><a href="#" style="color:white;font-size:27px;text-decoration: none;">
     
-      <div style=""><img src="/images/111.png" alt="" style="width:40px;height:40px;"> My Bolg</div>
+      <div class="web_name" style=""><img src="/images/111.png" alt="" style="width:40px;height:40px;"> My Bolg</div>
       </a>
     </div>
     
@@ -54,7 +71,7 @@ include "../resources/views/templates/resourcesFile.php";
   <img src="/images/23.png" style="padding-top:30px;width:100%;"><br>
   <p style="text-align:center;font-size:25px;font-weight:bold;">Think and write whats are your mind ....</>
 </div>
-<form method="post" enctype="multipart/form-data" action="{{ URL::to('/blog/signup') }}">
+<form method="post" enctype="multipart/form-data" action="{{ URL::to('/blog/signup') }}" style="padding-left:3%;padding-right:3%;">
   {{ csrf_field() }}
   <div  class="box">
   <div class="signupTxt">Sign up</div><br>

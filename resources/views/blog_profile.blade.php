@@ -16,6 +16,19 @@ include "../resources/views/templates/resourcesFile.php";
 <head>
 
   <style>
+    .textarea{
+      height: 150px; 
+      width: 100%;
+      border-radius:5px;
+      padding-left:10px;
+      padding-top:7px;
+      border:1px solid #c5c5c5;
+    }
+    .p_tag{
+      width:700px;
+      height:2px;
+      background-color:#007bff;
+    }
     .outlayer{
      
       background-color:white;
@@ -54,6 +67,41 @@ include "../resources/views/templates/resourcesFile.php";
       width:20px;
       height:20px;
     }
+    .float_right_container{
+      float:right;
+      padding-left:5%;
+      padding-right:5%;
+    }
+    @media only screen and (max-width: 500px){
+      .searchTxt{
+        width:100%;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 6px 10px;
+        color:black;
+      }
+      .dropdown {
+        padding-left:10%;
+      }
+      .dropdown-content{
+        min-width: 100%;
+      }
+      .textarea{
+        width: 100%;
+      }
+      .mybtn{
+        width:100%;
+      }
+      .outlayer{
+        width:100%;
+      }
+      .p_tag{
+        width:100%;
+      }
+      .float_right_container{
+        float:left;
+      }
+}
   </style>
 </head>
 
@@ -113,20 +161,20 @@ include "../resources/views/templates/resourcesFile.php";
     
 
 </div>
-<div style="float:right;padding-left:20px;padding-right:5%;">
+<div class="float_right_container">
 
     <div>
         <form method="post" action="{{ URL::to('/blog/create_post') }}">
         {{ csrf_field() }}
-        <p value="" style="width:700px;height:2px;background-color:#007bff;"></p>
+        <p value="" class="p_tag"></p>
         <div style="text-align:left;">
           <div style="font-size:25px;font-weight:bold;">Create a post</>
         </div>
         <div>
-          <textarea rows="5" name="status" style="height: 150px; width: 100%;;border-radius:5px;padding-left:10px;padding-top:7px;border:1px solid #c5c5c5;" placeholder="What's on your mind ... ? "></textarea>
+          <textarea rows="5" name="status" class="textarea" placeholder="What's on your mind ... ? "></textarea>
         </div>
         <div>
-          <input type="submit" name="" value="Share" class="btn btn-primary" style="width:100%;">
+          <input type="submit" name="" value="Share" class="btn btn-primary">
         </div>
     
         </form>

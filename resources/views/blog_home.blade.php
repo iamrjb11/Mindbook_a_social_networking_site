@@ -38,6 +38,47 @@ include "../resources/views/templates/resourcesFile.php";
       width:20px;
       height:20px;
     }
+    .searchTxt{
+      width:320%;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 6px 10px;
+      color:black;
+    }
+    .textarea{
+      margin: 0px opx 0px 0px; 
+      height: 150px; 
+      width: 57%;
+      border-radius:5px;
+      padding-left:10px;
+      padding-top:7px;
+      border:1px solid #c5c5c5;
+    }
+    @media only screen and (max-width: 500px){
+      .searchTxt{
+        width:100%;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 6px 10px;
+        color:black;
+      }
+      .dropdown {
+        padding-left:10%;
+      }
+      .dropdown-content{
+        min-width: 100%;
+      }
+      .textarea{
+        width: 100%;
+      }
+      .mybtn{
+        width:100%;
+      }
+      .outlayer{
+        width:100%;
+      }
+
+    }
   </style>
 </head>
 
@@ -53,7 +94,7 @@ include "../resources/views/templates/resourcesFile.php";
   {{ csrf_field() }}
     <div class="form-group">
     <div class="dropdown">
-      <input type="text" class="form-control" onkeyup="search(this.value);" id="searchTxt" placeholder="Search" style="width:300%;">
+      <input type="text" onkeyup="search(this.value);" class="searchTxt" id="searchTxt" placeholder="Search" >
      
       <div class="dropdown-content" id="drop_content">
         
@@ -82,17 +123,17 @@ include "../resources/views/templates/resourcesFile.php";
 
 </nav>
 
-<div style="padding-top:0px;padding-left:5%">
+<div style="padding-top:0px;padding-left:5%;padding-right:5%">
     <form method="post" action="{{ URL::to('/blog/create_post') }}">
         {{ csrf_field() }}
         <div style="text-align:left;">
         <div style="font-size:25px;font-weight:bold;">Create a post</div>
         </div>
         <div>
-        <textarea rows="5" name="status" style="margin: 0px opx 0px 0px; height: 150px; width: 57%;border-radius:5px;padding-left:10px;padding-top:7px;border:1px solid #c5c5c5;" placeholder="What's on your mind ... ? "></textarea>
+        <textarea rows="5" name="status" class="textarea" placeholder="What's on your mind ... ? "></textarea>
         </div>
         <div>
-        <input type="submit" name="" value="Share" class="btn btn-primary" style="width:57%;"></div>
+        <input type="submit" name="" value="Share" class="mybtn btn-primary"></div>
     </form>
 <br> 
 <div id="sts" style="">
