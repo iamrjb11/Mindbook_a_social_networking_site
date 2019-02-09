@@ -82,6 +82,13 @@ include "../resources/views/templates/resourcesFile.php";
     .pro_pic_layer{
       padding-left:12%;
     }
+    .searchTxt{
+      width:290%;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 6px 10px;
+      color:black;
+    }
     @media only screen and (max-width: 500px){
       .searchTxt{
         width:100%;
@@ -141,13 +148,13 @@ include "../resources/views/templates/resourcesFile.php";
 
 <div class="container-fluid">
 
-  <div class="navbar-header"  style="padding-right:600px;">
+<div class="navbar-header"  style="padding-right:500px;">
   <a class="navbar-brand" href="{{Session::get('host_name')}}/blog/home" style="font-size:25px;">My Blogs</a>
     <form class="navbar-form navbar-left" method="post" action="{{ URL::to('/blog/login') }}">
   {{ csrf_field() }}
     <div class="form-group">
     <div class="dropdown">
-      <input type="text" class="form-control" onkeyup="search(this.value);" id="searchTxt" placeholder="Search" style="width:300%;">
+      <input type="text" onkeyup="search(this.value);" class="searchTxt" id="searchTxt" placeholder="Search" >
      
       <div class="dropdown-content" id="drop_content">
         
@@ -162,12 +169,25 @@ include "../resources/views/templates/resourcesFile.php";
         <li class="nav-item" style="padding-left:20px;">
         <a class="nav-link" href="{{Session::get('host_name')}}/blog/profile?u_id={{Session::get('u_id')}}"><img src="{{ Session::get('u_img') }}" class="img-rounded" style="width:25px;height:25px"> {{Session::get('u_name')}}</a>
         </li>
-        <li class="nav-item" style="padding-left:20px;">
+        <li class="nav-item" style="padding-left:10px;">
         <a class="nav-link" href="{{Session::get('host_name')}}/blog/home">Home</a>
         </li>
-        <li class="nav-item" style="padding-left:20px;">
-        <a class="nav-link" href="{{Session::get('host_name')}}/blog/logout">Log out</a>
-        </li>
+        
+        <li class="nav-link" style="padding-left:10px;padding-right:60px;padding-top:11px;font-size:16px;">
+          <div class="dropdown">
+            <a href="#" class="nav-link" data-toggle="dropdown" style=""><span class="glyphicon glyphicon-triangle-bottom"></span></a>
+            <ul class="dropdown-menu">
+              <li class="dropdown-header" style="font-size:14px;color:blue;">{{Session::get('u_name')}}</li>
+              <li class="divider"></li>
+              
+              <li><a href="#"><span class="glyphicon glyphicon-user"></span> About</a></li>
+              <li><a href="#"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
+              <li class="divider"></li>
+              <li><a href="{{Session::get('host_name')}}/blog/logout"> <span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
+            </ul>
+        </div>
+      </li>
+        
     </ul>
   </div>
   
@@ -181,9 +201,9 @@ include "../resources/views/templates/resourcesFile.php";
     </div><br>
     <div class="info_layer">
       <p style="color:black;font-size:25px;font-weight:bold;">{{Session::get('u_name')}}</p>
-      <p><span class="glyphicon glyphicon-briefcase"></span> Studied B.Sc in Computer Science & Engineering (CSE) at <span style="color:blue;">Khulna University</span></p>
-      <p><span class="glyphicon glyphicon-book"></span> Studied HSC in Science at <span style="color:blue;">BN Collage</span></p>
-      <p><span class="glyphicon glyphicon-book"></span> Studied SSC Science at <span style="color:blue;">Rotary School, Khulna</span></p>
+      <p><span class="glyphicon glyphicon-education"></span> Studied B.Sc in Computer Science & Engineering (CSE) at <span style="color:blue;">Khulna University</span></p>
+      <p><span class="glyphicon glyphicon-education"></span> Studied HSC in Science at <span style="color:blue;">BN Collage</span></p>
+      <p><span class="glyphicon glyphicon-education"></span> Studied SSC Science at <span style="color:blue;">Rotary School, Khulna</span></p>
       <p><span class="glyphicon glyphicon-home"></span> Lives in <span style="color:blue;">Khulna</span></p>
       <p><span class="glyphicon glyphicon-phone"></span> +88 <span style="color:blue;"> 01778338429</span></p>
       <p><span class="glyphicon glyphicon-envelope"></span> <span style="color:blue;">iamrjb@gmail.com</span></p>
