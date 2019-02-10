@@ -22,6 +22,27 @@ include "../resources/views/templates/resourcesFile.php";
       padding: 6px 10px;
       color:black;
     }
+    .div_form{
+      background-color:white;
+      width:100%;
+      height:60%;
+      padding:30px 10%;
+      border-radius:6px;
+      border-top:2px solid #007bff;
+      border-bottom:2px solid #007bff;
+      box-shadow: 0 0 20px rgba(0,0,0,.15);
+    }
+    .about_txt{
+      background-color:white;
+      font-size:25px;
+      color:blue;
+      width:100%;
+      height:200%;
+      padding:20px 10%;
+      border-left:4px solid #007bff;
+      border-radius:6px;
+      box-shadow: 0 0 20px rgba(0,0,0,.15);
+    }
     @media only screen and (max-width: 500px){
       .searchTxt{
         width:100%;
@@ -86,4 +107,136 @@ include "../resources/views/templates/resourcesFile.php";
 </div>
 
 </nav>
+
+<div style="padding:0px 10%">
+<div class="about_txt">
+<span class="glyphicon glyphicon-user"></span> About
+</div><br>
+<div class="div_form">
+  <form class="form-horizontal" action="/action_page.php">
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="email">Full Name :</label>
+        <div class="col-sm-10">
+          <input type="email" class="form-control" id="email" placeholder="Full Name" name="name_txt">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="email">Lives in :</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="email" placeholder="Enter city name" name="email">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="email">Contact Number :</label>
+        <div class="col-sm-2" >
+          <input type="text" class="form-control" id="email" placeholder="" name="email" value="BD | +88" readonly>
+        </div>
+        <div class="col-sm-8">
+          <input type="text" class="form-control" id="email" placeholder="Enter mobile number" name="email">
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="email">University Info :</label>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-4" for="email">University Name :</label>
+        
+        <div class="col-sm-8">
+          <input type="email" class="form-control" id="email" placeholder="University Name " name="email">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-4" for="email">Department Name :</label>
+        
+        <div class="col-sm-8">
+          <input type="email" class="form-control" id="email" placeholder="Department Name" name="email">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-4" for="email">Degree Name :</label>
+        
+        <div class="col-sm-8">
+          <select class="form-control">
+            <option>--- Select ---</option>
+            <option>B.Sc</option>
+            <option>BA</option>
+            <option>Honours</option>
+            <option>M.Sc</option>
+            <option>PHD</option>
+          </select>
+        </div>
+      </div>
+
+
+
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="email">Collage Info :</label>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-4" for="email">Collage Name :</label>
+        
+        <div class="col-sm-8">
+          <input type="email" class="form-control" id="email" placeholder="Collage Name " name="email">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-4" for="email">Group :</label>
+        
+        <div class="col-sm-8">
+          <select class="form-control">
+            <option>--- Select ---</option>
+            <option>Science</option>
+            <option>Commerce</option>
+            <option>Arts</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-4" for="email">Degree Name :</label>
+        
+        <div class="col-sm-8">
+          <input type="email" class="form-control" id="email" placeholder="" name="email" value="HSC" readonly>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="email">School Info :</label>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-4" for="email">School Name :</label>
+        
+        <div class="col-sm-8">
+          <input type="email" class="form-control" id="email" placeholder="School Name " name="email">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-4" for="email">Group :</label>
+        
+        <div class="col-sm-8">
+          <select class="form-control">
+            <option>--- Select ---</option>
+            <option>Science</option>
+            <option>Commerce</option>
+            <option>Arts</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-4" for="email">Degree Name :</label>
+        
+        <div class="col-sm-8">
+          <input type="email" class="form-control" id="email" placeholder="" name="email" value="SSC" readonly>
+        </div>
+      </div>
+      
+     <br>
+      <div class="form-group">        
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="btn btn-success" style="width:100%">Save</button>
+        </div>
+      </div>
+  </form>
+</div>
+</div><br><br>
 </body>
