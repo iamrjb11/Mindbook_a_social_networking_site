@@ -177,7 +177,7 @@ include "../resources/views/templates/resourcesFile.php";
           <div class="dropdown">
             <a href="#" class="nav-link" data-toggle="dropdown" style=""><span class="glyphicon glyphicon-triangle-bottom"></span></a>
             <ul class="dropdown-menu">
-              <li class="dropdown-header" style="font-size:14px;color:blue;">{{Session::get('u_name')}}</li>
+              <li class="" ><a class="" href="{{Session::get('host_name')}}/blog/profile?u_id={{Session::get('u_id')}}" style="font-size:14px;color:blue;">{{Session::get('u_name')}}</a></li>
               <li class="divider"></li>
               
               <li><a href="{{Session::get('host_name')}}/blog/about"><span class="glyphicon glyphicon-user"></span> About</a></li>
@@ -201,12 +201,45 @@ include "../resources/views/templates/resourcesFile.php";
     </div><br>
     <div class="info_layer">
       <p style="color:black;font-size:25px;font-weight:bold;">{{Session::get('u_name')}}</p>
-      <p><span class="glyphicon glyphicon-education"></span> Studied B.Sc in Computer Science & Engineering (CSE) at <span style="color:blue;">Khulna University</span></p>
-      <p><span class="glyphicon glyphicon-education"></span> Studied HSC in Science at <span style="color:blue;">BN Collage</span></p>
-      <p><span class="glyphicon glyphicon-education"></span> Studied SSC Science at <span style="color:blue;">Rotary School, Khulna</span></p>
-      <p><span class="glyphicon glyphicon-home"></span> Lives in <span style="color:blue;">Khulna</span></p>
-      <p><span class="glyphicon glyphicon-phone"></span> +88 <span style="color:blue;"> 01778338429</span></p>
-      <p><span class="glyphicon glyphicon-envelope"></span> <span style="color:blue;">iamrjb@gmail.com</span></p>
+      @if($data[0]->versity_name !="")
+        <p><span class="glyphicon glyphicon-education"></span> Studied 
+        @if($data[0]->collage_group !="")
+        {{ $data[0]->versity_degree}} 
+        @endif
+        @if($data[0]->collage_group !="")
+          in {{ $data[0]->versity_department}}
+        @endif
+        at <span style="color:blue;">{{ $data[0]->versity_name}}</span></p>
+      @endif
+
+      @if($data[0]->collage_name !="")
+        <p><span class="glyphicon glyphicon-education"></span> Studied HSC 
+        @if($data[0]->collage_group !="")
+          in {{$data[0]->collage_group}} 
+        @endif
+        at <span style="color:blue;">{{$data[0]->collage_name}}</span></p>
+      @endif
+
+      @if($data[0]->school_name !="")
+        <p><span class="glyphicon glyphicon-education"></span> Studied SSC 
+        @if($data[0]->school_group !="")
+            in {{$data[0]->school_group}} 
+        @endif
+        at <span style="color:blue;">{{$data[0]->school_name}}</span></p>
+      @endif
+
+      @if($data[0]->live !="")
+        <p><span class="glyphicon glyphicon-home"></span> Lives in <span style="color:blue;"> {{ $data[0]->live}}</span></p>
+      @endif
+
+      @if($data[0]->user_mobile !="")
+        <p><span class="glyphicon glyphicon-phone"></span> +88 <span style="color:blue;"> {{ $data[0]->user_mobile}}</span></p>
+      @endif
+
+      
+      <p><span class="glyphicon glyphicon-envelope"></span> <span style="color:blue;">{{ $data[0]->user_email}}</span></p>
+    
+      
     </div>
     
 

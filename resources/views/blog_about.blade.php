@@ -89,7 +89,7 @@ include "../resources/views/templates/resourcesFile.php";
           <div class="dropdown">
             <a href="#" class="nav-link" data-toggle="dropdown" style=""><span class="glyphicon glyphicon-triangle-bottom"></span></a>
             <ul class="dropdown-menu">
-              <li class="dropdown-header" style="font-size:14px;color:blue;">{{Session::get('u_name')}}</li>
+              <li class="" ><a class="" href="{{Session::get('host_name')}}/blog/profile?u_id={{Session::get('u_id')}}" style="font-size:14px;color:blue;">{{Session::get('u_name')}}</a></li>
               <li class="divider"></li>
               
               <li><a href="{{Session::get('host_name')}}/blog/about"><span class="glyphicon glyphicon-user"></span> About</a></li>
@@ -160,7 +160,7 @@ include "../resources/views/templates/resourcesFile.php";
         
         <div class="col-sm-8">
           <select class="form-control" name="versity_degree">
-            <option>--- Select ---</option>
+            <option value="">--- Select ---</option>
             <option value="B.Sc">B.Sc</option>
             <option value="BA">BA</option>
             <option value="Honours">Honours</option>
@@ -187,7 +187,7 @@ include "../resources/views/templates/resourcesFile.php";
         
         <div class="col-sm-8">
           <select class="form-control" name="collage_group">
-            <option value="0">--- Select ---</option>
+            <option value="">--- Select ---</option>
             <option value="Science">Science</option>
             <option value="Commerce">Commerce</option>
             <option value="Arts">Arts</option>
@@ -216,7 +216,7 @@ include "../resources/views/templates/resourcesFile.php";
         
         <div class="col-sm-8">
           <select class="form-control" name="school_group">
-            <option value="0">--- Select ---</option>
+            <option value="">--- Select ---</option>
             <option value="Science">Science</option>
             <option value="Commerce">Commerce</option>
             <option value="Arts">Arts</option>

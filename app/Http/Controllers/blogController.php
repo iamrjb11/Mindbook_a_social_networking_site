@@ -105,13 +105,11 @@ class blogController extends Controller
     public function create_post(Request $request){
         
         $u_id=$request->session()->get('u_id');
-        $u_name=$request->session()->get('u_name');
-        $u_img=$request->session()->get('u_img');
         //echo $u_img;
         date_default_timezone_set("Asia/Dhaka");
         $todays_time = date("g:i a , j F Y");  
         $status = $request->get('status');
-        DB::insert("insert into users_posts_tbl (user_id,user_name,user_img,status,time,likes) values(?,?,?,?,?,?)",[$u_id,$u_name,$u_img,$status,$todays_time,0]);
+        DB::insert("insert into users_posts_tbl (user_id,status,time,likes) values(?,?,?,?)",[$u_id,$status,$todays_time,0]);
         
         return redirect('/blog/home');
 
@@ -125,10 +123,16 @@ class blogController extends Controller
         $live = $request->input('live_txt');
         $versity_name = $request->input('versity_name');
         $versity_department = $request->input('versity_department');
-        $u_img =
+        $versity_degree = $request->input('versity_degree');
+
+        $collage_name = $request->input('collage_name');
+        $collage_group = $request->input('collage_group');
+        $school_name = $request->input('school_name');
+        $school_group = $request->input('school_group');
+        $u_img ="";
         //echo $u_img;
         
-        DB::update("update user_info_tbl set user_name=?,user_mobile=?,live=?,versity_name=?,versity_department=? where user_id=?",[$u_name,$mobile,$live,$versity_name,$versity_department,$u_id]);
+        DB::update("update user_info_tbl set user_name=?,user_mobile=?,live=?,versity_name=?,versity_department=?,versity_degree=?,collage_name=?,collage_group=?,school_name=?,school_group=? where user_id=?",[$u_name,$mobile,$live,$versity_name,$versity_department,$versity_degree,$collage_name,$collage_group,$school_name,$school_group,$u_id]);
         Session::put('u_name',$u_name);
         
         

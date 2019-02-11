@@ -68,7 +68,7 @@ include "../resources/views/templates/resourcesFile.php";
           <div class="dropdown">
             <a href="#" class="nav-link" data-toggle="dropdown" style=""><span class="glyphicon glyphicon-triangle-bottom"></span></a>
             <ul class="dropdown-menu">
-              <li class="dropdown-header" style="font-size:14px;color:blue;">{{Session::get('u_name')}}</li>
+              <li class="" ><a class="" href="{{Session::get('host_name')}}/blog/profile?u_id={{Session::get('u_id')}}" style="font-size:14px;color:blue;">{{Session::get('u_name')}}</a></li>
               <li class="divider"></li>
               
               <li><a href="{{Session::get('host_name')}}/blog/about"><span class="glyphicon glyphicon-user"></span> About</a></li>
