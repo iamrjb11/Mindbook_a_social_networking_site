@@ -27,15 +27,24 @@ Route::get('/blog/logout',function(){
     
     return view('blog');
 });
-Route::post('/blog/signup','blogController@signup');
-Route::post('/blog/login','blogController@login');
+//For all get requests
+
 Route::get('/blog/home','blogController@home');
 Route::get('/blog/profile','blogController@profile');
-Route::post('/blog/create_post','blogController@create_post');
-Route::get('/blog/search','blogController@search');
 Route::get('/blog/about','blogController@about');
 Route::get('/blog/settings','blogController@settings');
+Route::get('/blog/search','blogController@search');
+
 Route::get('/blog/demo','blogController@demo');
+
+//For all post requests
+Route::post('/blog/login','blogController@login');
+Route::post('/blog/signup','blogController@signup');
+
+
+Route::post('/blog/create_post','blogController@create_post');
+Route::post('/blog/save_about','blogController@save_about');
+
 
 
 

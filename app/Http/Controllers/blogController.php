@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Session; // to use Session::get/put('session_name') ->it is always include top after namespace
 
 use Illuminate\Support\Facades\DB; // to use Database (DB::select("query"))
 use Illuminate\Support\Facades\Input; //to use this Input::get('tag')
@@ -12,7 +13,7 @@ use App\Http\Controllers\Controller;
 
 class blogController extends Controller
 {
-    public $u_id;
+    public static $u_id;
     //
     public function signup(Request $request){
         //echo "Good<br>";
@@ -72,7 +73,7 @@ class blogController extends Controller
         date_default_timezone_set("Asia/Dhaka");
         $todays_time = date("g:i a , j F Y");  
         //echo $today;
-        $data = DB::select("select * from users_posts_tbl order by srl DESC");
+        $data = DB::select("select * from users_posts_tbl inner join user_info_tbl on users_posts_tbl.user_id=user_info_tbl.user_id order by srl DESC");
         //echo $data[0]->user_img;
         return view('blog_home',['data'=>$data]);
     }
@@ -88,10 +89,15 @@ class blogController extends Controller
         return view('demo',['data'=>$data]);
     }
     public function profile(){
+        //get user_id from get method (from url parameter)
+        if(Input::get('u_id'))
+            $u_id = Input::get('u_id');
         //get user_id from session key
-        $u_id = Input::get('u_id');
+        else 
+            $u_id = Session::get('u_id'); // if(Session::has('panier')) for check
+            
 
-        $data = DB::select("select * from users_posts_tbl where user_id='$u_id' order by srl DESC");
+        $data = DB::select("select * from user_info_tbl inner join users_posts_tbl on users_posts_tbl.user_id='$u_id' and user_info_tbl.user_id='$u_id' order by srl DESC");
         
         return view('blog_profile',['data'=>$data]);
     }
@@ -108,6 +114,26 @@ class blogController extends Controller
         DB::insert("insert into users_posts_tbl (user_id,user_name,user_img,status,time,likes) values(?,?,?,?,?,?)",[$u_id,$u_name,$u_img,$status,$todays_time,0]);
         
         return redirect('/blog/home');
+
+    }
+    public function save_about(Request $request){
+        
+        $u_id=$request->session()->get('u_id');
+        $u_name = $request->input('name_txt');
+        $live = $request->input('live_txt');
+        $mobile = $request->input('mobile_txt');
+        $live = $request->input('live_txt');
+        $versity_name = $request->input('versity_name');
+        $versity_department = $request->input('versity_department');
+        $u_img =
+        //echo $u_img;
+        
+        DB::update("update user_info_tbl set user_name=?,user_mobile=?,live=?,versity_name=?,versity_department=? where user_id=?",[$u_name,$mobile,$live,$versity_name,$versity_department,$u_id]);
+        Session::put('u_name',$u_name);
+        
+        
+        return $this->profile();
+        //return redirect('/blog/home');
 
     }
     public function search(){

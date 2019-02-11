@@ -113,26 +113,27 @@ include "../resources/views/templates/resourcesFile.php";
 <span class="glyphicon glyphicon-user"></span> About
 </div><br>
 <div class="div_form">
-  <form class="form-horizontal" action="/action_page.php">
+  <form class="form-horizontal" enctype="multipart/form-data"  method="post" action="{{ URL::to('/blog/save_about') }}">
+  {{ csrf_field() }}
       <div class="form-group">
         <label class="control-label col-sm-2" for="email">Full Name :</label>
         <div class="col-sm-10">
-          <input type="email" class="form-control" id="email" placeholder="Full Name" name="name_txt">
+          <input type="text" class="form-control" id="email" placeholder="Full Name" name="name_txt">
         </div>
       </div>
       <div class="form-group">
-        <label class="control-label col-sm-2" for="email">Lives in :</label>
+        <label class="control-label col-sm-2" for="live_txt">Lives in :</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="email" placeholder="Enter city name" name="email">
+          <input type="text" class="form-control" id="live_txt" placeholder="Enter city name" name="live_txt">
         </div>
       </div>
       <div class="form-group">
-        <label class="control-label col-sm-2" for="email">Contact Number :</label>
+        <label class="control-label col-sm-2" for="mobile_txt">Contact Number :</label>
         <div class="col-sm-2" >
-          <input type="text" class="form-control" id="email" placeholder="" name="email" value="BD | +88" readonly>
+          <input type="text" class="form-control" id="mobile_code_txt" placeholder="" name="mobile_code_txt" value="BD | +88" readonly>
         </div>
         <div class="col-sm-8">
-          <input type="text" class="form-control" id="email" placeholder="Enter mobile number" name="email">
+          <input type="text" class="form-control" id="mobile_txt" placeholder="Enter mobile number" name="mobile_txt">
         </div>
       </div>
 
@@ -144,27 +145,27 @@ include "../resources/views/templates/resourcesFile.php";
         <label class="control-label col-sm-4" for="email">University Name :</label>
         
         <div class="col-sm-8">
-          <input type="email" class="form-control" id="email" placeholder="University Name " name="email">
+          <input type="text" class="form-control" id="email" placeholder="University Name " name="versity_name">
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-4" for="email">Department Name :</label>
         
         <div class="col-sm-8">
-          <input type="email" class="form-control" id="email" placeholder="Department Name" name="email">
+          <input type="text" class="form-control" id="email" placeholder="Department Name" name="versity_department">
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-4" for="email">Degree Name :</label>
         
         <div class="col-sm-8">
-          <select class="form-control">
+          <select class="form-control" name="versity_degree">
             <option>--- Select ---</option>
-            <option>B.Sc</option>
-            <option>BA</option>
-            <option>Honours</option>
-            <option>M.Sc</option>
-            <option>PHD</option>
+            <option value="B.Sc">B.Sc</option>
+            <option value="BA">BA</option>
+            <option value="Honours">Honours</option>
+            <option value="M.Sc">M.Sc</option>
+            <option value="Phd">Phd</option>
           </select>
         </div>
       </div>
@@ -178,18 +179,18 @@ include "../resources/views/templates/resourcesFile.php";
         <label class="control-label col-sm-4" for="email">Collage Name :</label>
         
         <div class="col-sm-8">
-          <input type="email" class="form-control" id="email" placeholder="Collage Name " name="email">
+          <input type="text" class="form-control" id="email" placeholder="Collage Name " name="collage_name">
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-4" for="email">Group :</label>
         
         <div class="col-sm-8">
-          <select class="form-control">
-            <option>--- Select ---</option>
-            <option>Science</option>
-            <option>Commerce</option>
-            <option>Arts</option>
+          <select class="form-control" name="collage_group">
+            <option value="0">--- Select ---</option>
+            <option value="Science">Science</option>
+            <option value="Commerce">Commerce</option>
+            <option value="Arts">Arts</option>
           </select>
         </div>
       </div>
@@ -197,7 +198,7 @@ include "../resources/views/templates/resourcesFile.php";
         <label class="control-label col-sm-4" for="email">Degree Name :</label>
         
         <div class="col-sm-8">
-          <input type="email" class="form-control" id="email" placeholder="" name="email" value="HSC" readonly>
+          <input type="text" class="form-control" id="email" placeholder="" name="email" value="HSC" readonly>
         </div>
       </div>
       <div class="form-group">
@@ -207,18 +208,18 @@ include "../resources/views/templates/resourcesFile.php";
         <label class="control-label col-sm-4" for="email">School Name :</label>
         
         <div class="col-sm-8">
-          <input type="email" class="form-control" id="email" placeholder="School Name " name="email">
+          <input type="text" class="form-control" id="email" placeholder="School Name " name="school_name">
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-4" for="email">Group :</label>
         
         <div class="col-sm-8">
-          <select class="form-control">
-            <option>--- Select ---</option>
-            <option>Science</option>
-            <option>Commerce</option>
-            <option>Arts</option>
+          <select class="form-control" name="school_group">
+            <option value="0">--- Select ---</option>
+            <option value="Science">Science</option>
+            <option value="Commerce">Commerce</option>
+            <option value="Arts">Arts</option>
           </select>
         </div>
       </div>
@@ -226,14 +227,14 @@ include "../resources/views/templates/resourcesFile.php";
         <label class="control-label col-sm-4" for="email">Degree Name :</label>
         
         <div class="col-sm-8">
-          <input type="email" class="form-control" id="email" placeholder="" name="email" value="SSC" readonly>
+          <input type="text" class="form-control" id="email" placeholder="" name="email" value="SSC" readonly>
         </div>
       </div>
       
      <br>
       <div class="form-group">        
         <div class="col-sm-offset-2 col-sm-10">
-          <button type="submit" class="btn btn-success" style="width:100%">Save</button>
+          <input type="submit" class="btn btn-success" style="width:100%" value="Save">
         </div>
       </div>
   </form>
