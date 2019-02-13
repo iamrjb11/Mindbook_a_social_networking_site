@@ -1,16 +1,9 @@
 <?php
-//take a get url value inside blade template
-$r=Request::get('u_id');
-//echo $r;
-if( $r ){
-  Session::put('title',$data[0]->user_name.' | Profile');
- 
-}
-else
-  Session::put('title','Home');
+
+Session::put('title',$data[0]->user_name.' | Settings');
+
+
 include "../resources/views/templates/resourcesFile.php";
-
-
 
 ?>
 <head>
@@ -22,6 +15,27 @@ include "../resources/views/templates/resourcesFile.php";
       padding: 6px 10px;
       color:black;
     }
+    .div_form{
+      background-color:white;
+      width:100%;
+      height:60%;
+      padding:30px 10%;
+      border-radius:6px;
+      border-top:2px solid #007bff;
+      border-bottom:2px solid #007bff;
+      box-shadow: 0 0 20px rgba(0,0,0,.15);
+    }
+    .about_txt{
+      background-color:white;
+      font-size:25px;
+      color:blue;
+      width:100%;
+      height:200%;
+      padding:20px 10%;
+      border-left:4px solid #007bff;
+      border-radius:6px;
+      box-shadow: 0 0 20px rgba(0,0,0,.15);
+    }
     @media only screen and (max-width: 500px){
       .searchTxt{
         width:100%;
@@ -31,7 +45,13 @@ include "../resources/views/templates/resourcesFile.php";
         color:black;
       }
     }
+    
+    
 </style>
+<script>
+  
+
+</script>
 </head>
 <body>
 <nav class="navbar navbar-expand-sm bg-primary navbar-dark sticky-top">
@@ -86,4 +106,64 @@ include "../resources/views/templates/resourcesFile.php";
 </div>
 
 </nav>
+
+
+
+
+<div style="padding:0px 10%">
+<div class="about_txt">
+<span class="glyphicon glyphicon-cog"></span> Settings
+</div><br>
+
+<div class="div_form">
+  <form class="form-horizontal" enctype="multipart/form-data"  method="post" action="{{ URL::to('/blog/change_password') }}">
+  {{ csrf_field() }}
+      <div class="form-group">
+        <label class="control-label col-sm-3" for="email" style="font-size:19px;">Change Password</label>  
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-3" for="email">Current Password :</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" id="email" placeholder="Enter current password" name="cur_pass_txt" value="" >
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-3" for="live_txt">New Password :</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" id="live_txt" placeholder="Enter new passsword" name="new_pass_txt" value="">
+        </div>
+      </div>
+    
+      <div class="form-group">        
+        <div class="col-sm-offset-3 col-sm-9">
+          <input type="submit" class="btn btn-success" style="width:100%" value="Change" id="pass_btn">
+        </div>
+      </div>
+  </form>
+  <form class="form-horizontal" enctype="multipart/form-data"  method="post" action="{{ URL::to('/blog/change_email') }}">
+    {{ csrf_field() }}
+        <div class="form-group">
+          <label class="control-label col-sm-3" for="email" style="font-size:19px;">Change Email</label>  
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-3" for="email">Current Email :</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control" id="email" placeholder="Enter current password" name="email_txt" value="{{$data[0]->user_email}}" readonly>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-3" for="live_txt">New Email :</label>
+          <div class="col-sm-9">
+            <input type="email" class="form-control" id="live_txt" placeholder="Enter new email" name="new_email_txt" value="">
+          </div>
+        </div>
+      
+        <div class="form-group">        
+          <div class="col-sm-offset-3 col-sm-9">
+            <input type="submit" class="btn btn-success" style="width:100%" value="Change">
+          </div>
+        </div>
+  </form>
+</div>
+</div>
 </body>

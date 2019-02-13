@@ -1,13 +1,9 @@
 <?php
-//take a get url value inside blade template
-$r=Request::get('u_id');
-//echo $r;
-if( $r ){
-  Session::put('title',$data[0]->user_name.' | Profile');
+
+Session::put('title',$data[0]->user_name.' | About');
  
-}
-else
-  Session::put('title','Home');
+
+
 include "../resources/views/templates/resourcesFile.php";
 
 
@@ -52,7 +48,20 @@ include "../resources/views/templates/resourcesFile.php";
         color:black;
       }
     }
+    
 </style>
+  <script>
+    
+    $(document).ready(function(){
+      $('#versity_degree option[value={{$data[0]->versity_degree}}]').attr('selected','selected');
+    });
+    $(document).ready(function(){
+      $('#collage_group option[value={{$data[0]->collage_group}}]').attr('selected','selected');
+    });
+    $(document).ready(function(){
+      $('#school_group option[value={{$data[0]->school_group}}]').attr('selected','selected');
+    });
+  </script>
 </head>
 <body>
 <nav class="navbar navbar-expand-sm bg-primary navbar-dark sticky-top">
@@ -118,13 +127,13 @@ include "../resources/views/templates/resourcesFile.php";
       <div class="form-group">
         <label class="control-label col-sm-2" for="email">Full Name :</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="email" placeholder="Full Name" name="name_txt">
+          <input type="text" class="form-control" id="email" placeholder="Full Name" name="name_txt" value="{{$data[0]->user_name}}" required>
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-2" for="live_txt">Lives in :</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="live_txt" placeholder="Enter city name" name="live_txt">
+          <input type="text" class="form-control" id="live_txt" placeholder="Enter city name" name="live_txt" value="{{$data[0]->live}}">
         </div>
       </div>
       <div class="form-group">
@@ -133,38 +142,38 @@ include "../resources/views/templates/resourcesFile.php";
           <input type="text" class="form-control" id="mobile_code_txt" placeholder="" name="mobile_code_txt" value="BD | +88" readonly>
         </div>
         <div class="col-sm-8">
-          <input type="text" class="form-control" id="mobile_txt" placeholder="Enter mobile number" name="mobile_txt">
+          <input type="text" class="form-control" id="mobile_txt" placeholder="Enter mobile number" name="mobile_txt" value="{{$data[0]->user_mobile}}">
         </div>
       </div>
 
 
       <div class="form-group">
-        <label class="control-label col-sm-2" for="email">University Info :</label>
+        <label class="control-label col-sm-2" for="email">University Info :-</label>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-4" for="email">University Name :</label>
         
         <div class="col-sm-8">
-          <input type="text" class="form-control" id="email" placeholder="University Name " name="versity_name">
+          <input type="text" class="form-control" id="email" placeholder="University Name " name="versity_name" value="{{$data[0]->versity_name}}">
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-4" for="email">Department Name :</label>
         
         <div class="col-sm-8">
-          <input type="text" class="form-control" id="email" placeholder="Department Name" name="versity_department">
+          <input type="text" class="form-control" id="email" placeholder="Department Name" name="versity_department" value="{{$data[0]->versity_department}}">
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-4" for="email">Degree Name :</label>
         
         <div class="col-sm-8">
-          <select class="form-control" name="versity_degree">
+          <select class="form-control" name="versity_degree" id="versity_degree">
             <option value="">--- Select ---</option>
-            <option value="B.Sc">B.Sc</option>
+            <option value="BSc">B.Sc</option>
             <option value="BA">BA</option>
             <option value="Honours">Honours</option>
-            <option value="M.Sc">M.Sc</option>
+            <option value="MSc">M.Sc</option>
             <option value="Phd">Phd</option>
           </select>
         </div>
@@ -173,20 +182,20 @@ include "../resources/views/templates/resourcesFile.php";
 
 
       <div class="form-group">
-        <label class="control-label col-sm-2" for="email">Collage Info :</label>
+        <label class="control-label col-sm-2" for="email">Collage Info :-</label>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-4" for="email">Collage Name :</label>
         
         <div class="col-sm-8">
-          <input type="text" class="form-control" id="email" placeholder="Collage Name " name="collage_name">
+          <input type="text" class="form-control" id="email" placeholder="Collage Name " name="collage_name" value="{{$data[0]->collage_name}}">
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-4" for="email">Group :</label>
         
         <div class="col-sm-8">
-          <select class="form-control" name="collage_group">
+          <select class="form-control" name="collage_group" id="collage_group">
             <option value="">--- Select ---</option>
             <option value="Science">Science</option>
             <option value="Commerce">Commerce</option>
@@ -202,20 +211,20 @@ include "../resources/views/templates/resourcesFile.php";
         </div>
       </div>
       <div class="form-group">
-        <label class="control-label col-sm-2" for="email">School Info :</label>
+        <label class="control-label col-sm-2" for="email">School Info :-</label>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-4" for="email">School Name :</label>
         
         <div class="col-sm-8">
-          <input type="text" class="form-control" id="email" placeholder="School Name " name="school_name">
+          <input type="text" class="form-control" id="email" placeholder="School Name " name="school_name" value="{{$data[0]->school_name}}"> 
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-4" for="email">Group :</label>
         
         <div class="col-sm-8">
-          <select class="form-control" name="school_group">
+          <select class="form-control" name="school_group" id="school_group">
             <option value="">--- Select ---</option>
             <option value="Science">Science</option>
             <option value="Commerce">Commerce</option>

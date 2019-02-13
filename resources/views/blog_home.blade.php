@@ -155,7 +155,7 @@ include "../resources/views/templates/resourcesFile.php";
   <div class="outlayer">
     <div>
     <img src="{{$dt->user_img}}" class="sts_img">
-    <a class="sts_name" href="#">{{$dt->user_name}}</a><p>Time : <span style="color:#767a82">{{ $dt->time}}</span></p>
+    <a class="sts_name" href="{{Session::get('host_name')}}/blog/others_profile?other_id={{$dt->user_id}}">{{$dt->user_name}}</a><p>Time : <span style="color:#767a82">{{ $dt->time}}</span></p>
       
       <p>{{$dt->status}}</p>
     </div><br>

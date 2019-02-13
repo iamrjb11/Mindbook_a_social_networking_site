@@ -13,20 +13,18 @@
 
 //For blog
 Route::get('/blog',function(){
-    $full=url()->current();
-    //return view('blog');
-    $crop = Request::getRequestUri();
-    //echo $crop;
-    $host = explode($crop,$full,2);
-    Session::put('host_name',$host[0]);
-    
-    return view('blog');
-    
+    if(Session::get('msg_overlap_pblm') != 1) Session::put('msg_code',"");
+        $full=url()->current();
+        //return view('blog');
+        $crop = Request::getRequestUri();
+        //echo $crop;
+        $host = explode($crop,$full,2);
+        Session::put('host_name',$host[0]);
+        Session::put('msg_overlap_pblm', 0);
+        
+        return view('blog');
 });
-Route::get('/blog/logout',function(){
-    
-    return view('blog');
-});
+Route::get('/blog/logout','blogController@logout');
 //For all get requests
 
 Route::get('/blog/home','blogController@home');
@@ -34,6 +32,7 @@ Route::get('/blog/profile','blogController@profile');
 Route::get('/blog/about','blogController@about');
 Route::get('/blog/settings','blogController@settings');
 Route::get('/blog/search','blogController@search');
+Route::get('/blog/others_profile','blogController@others_profile');
 
 Route::get('/blog/demo','blogController@demo');
 
@@ -44,6 +43,9 @@ Route::post('/blog/signup','blogController@signup');
 
 Route::post('/blog/create_post','blogController@create_post');
 Route::post('/blog/save_about','blogController@save_about');
+
+Route::post('/blog/change_password','blogController@change_password');
+Route::post('/blog/change_email','blogController@change_email');
 
 
 
@@ -74,6 +76,7 @@ Route::resource('course','resourceController');
 Route::post('/course/show','resourceController@show');
 Route::get('/course/create','resourceController@create')->middleware('rrk');
 Route::get('/', function () {
+    //do what are u want
     return view('welcome');
 });
 Route::get('/rajib',function(){

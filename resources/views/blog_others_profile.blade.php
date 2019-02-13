@@ -1,13 +1,7 @@
 <?php
-//take a get url value inside blade template
-$r=Request::get('u_id');
-//echo $r;
-if( $r ){
-  Session::put('title',$data[0]->user_name.' | Profile');
- 
-}
-else
-  Session::put('title','Home');
+
+Session::put('title',$data2[0]->user_name.' | Profile');
+
 include "../resources/views/templates/resourcesFile.php";
 
 
@@ -197,53 +191,53 @@ include "../resources/views/templates/resourcesFile.php";
 </nav>
 <div class="float_left_container">
     <div class="pro_pic_layer">
-    <img src="{{$data[0]->user_img}}" class="pro_pic">
+    <img src="{{$data2[0]->user_img}}" class="pro_pic">
     </div><br>
     <div class="info_layer">
-      <p style="color:black;font-size:25px;font-weight:bold;">{{Session::get('u_name')}}</p>
-      @if($data[0]->versity_name !="")
+      <p style="color:black;font-size:25px;font-weight:bold;">{{$data2[0]->user_name}}</p>
+      @if($data2[0]->versity_name !="")
         <p><span class="glyphicon glyphicon-education"></span> Studied 
-        @if($data[0]->versity_degree !="")
-          @if($data[0]->versity_degree =="BSc")
+        @if($data2[0]->versity_degree !="")
+          @if($data2[0]->versity_degree =="BSc")
             B.Sc
-          @elseif($data[0]->versity_degree =="MSc")
+          @elseif($data2[0]->versity_degree =="MSc")
             M.Sc
           @else
-            {{$data[0]->versity_degree}} 
+            {{$data2[0]->versity_degree}} 
           @endif
         @endif
-        @if($data[0]->collage_group !="")
-          in {{ $data[0]->versity_department}}
+        @if($data2[0]->collage_group !="")
+          in {{ $data2[0]->versity_department}}
         @endif
-        at <span style="color:blue;">{{ $data[0]->versity_name}}</span></p>
+        at <span style="color:blue;">{{ $data2[0]->versity_name}}</span></p>
       @endif
 
-      @if($data[0]->collage_name !="")
+      @if($data2[0]->collage_name !="")
         <p><span class="glyphicon glyphicon-education"></span> Studied HSC 
-        @if($data[0]->collage_group !="")
-          in {{$data[0]->collage_group}} 
+        @if($data2[0]->collage_group !="")
+          in {{$data2[0]->collage_group}} 
         @endif
-        at <span style="color:blue;">{{$data[0]->collage_name}}</span></p>
+        at <span style="color:blue;">{{$data2[0]->collage_name}}</span></p>
       @endif
 
-      @if($data[0]->school_name !="")
+      @if($data2[0]->school_name !="")
         <p><span class="glyphicon glyphicon-education"></span> Studied SSC 
-        @if($data[0]->school_group !="")
-            in {{$data[0]->school_group}} 
+        @if($data2[0]->school_group !="")
+            in {{$data2[0]->school_group}} 
         @endif
-        at <span style="color:blue;">{{$data[0]->school_name}}</span></p>
+        at <span style="color:blue;">{{$data2[0]->school_name}}</span></p>
       @endif
 
-      @if($data[0]->live !="")
-        <p><span class="glyphicon glyphicon-home"></span> Lives in <span style="color:blue;"> {{ $data[0]->live}}</span></p>
+      @if($data2[0]->live !="")
+        <p><span class="glyphicon glyphicon-home"></span> Lives in <span style="color:blue;"> {{ $data2[0]->live}}</span></p>
       @endif
 
-      @if($data[0]->user_mobile !="")
-        <p><span class="glyphicon glyphicon-phone"></span> +88 <span style="color:blue;"> {{ $data[0]->user_mobile}}</span></p>
+      @if($data2[0]->user_mobile !="")
+        <p><span class="glyphicon glyphicon-phone"></span> +88 <span style="color:blue;"> {{ $data2[0]->user_mobile}}</span></p>
       @endif
 
       
-      <p><span class="glyphicon glyphicon-envelope"></span> <span style="color:blue;">{{ $data[0]->user_email}}</span></p>
+      <p><span class="glyphicon glyphicon-envelope"></span> <span style="color:blue;">{{ $data2[0]->user_email}}</span></p>
     
       
     </div>
@@ -252,27 +246,12 @@ include "../resources/views/templates/resourcesFile.php";
 </div>
 <div class="float_right_container">
 
-    <div>
-        <form method="post" action="{{ URL::to('/blog/create_post') }}">
-        {{ csrf_field() }}
-        <p value="" class="p_tag"></p>
-        <div style="text-align:left;">
-          <div style="font-size:25px;font-weight:bold;">Create a post</>
-        </div>
-        <div>
-          <textarea rows="5" name="status" class="textarea" placeholder="What's on your mind ... ? "></textarea>
-        </div>
-        <div>
-          <input type="submit" name="" value="Share" class="mybtn btn-primary">
-        </div>
-    
-        </form>
-    </div>
+<p value="" class="p_tag"></p>
 
-</div>
+
 <br> 
 <div id="sts" style="">
-@foreach($data as $dt)
+@foreach($data2 as $dt)
 <br>
   <div class="outlayer">
     <div>
@@ -289,10 +268,9 @@ include "../resources/views/templates/resourcesFile.php";
 
   
 </div>
+
+
 </div>
-
-
-
 
 </body>
 </html> 

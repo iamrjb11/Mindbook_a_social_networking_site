@@ -61,3 +61,17 @@ body{
     border-color: #2e6da4;
 }
 
+.alert{
+  position:fixed;
+  top:15%;
+  right:-120px;
+  transition:all 1s ease;
+  opacity:0;
+  
+ 
+}
+.on{
+  top:15%;
+  right:20px;
+  opacity:1;
+}

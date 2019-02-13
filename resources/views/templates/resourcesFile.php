@@ -17,6 +17,39 @@
     <script src="/bstp3/js/bootstrap.min.js"></script>
     <script src="/bstp3/js/jquery-3.2.1.min.js"></script>
     <script src="/js/blog.me.js"></script>
+
+
+
+    <script>
+        $(document).ready(function(){
+        console.log("in->");
+        <?php if(Session::get('msg_code') =="success"){ ?>
+    
+            var temp = '<div class="alert alert-info alert-dismissable" style="background-color:#55d33f;color:white;">'+
+                    '<button type="" class="close" data-dismiss="alert"  style="color:white;">&times</button>'+
+                    '<?php echo Session::get('msg_text');?>'+
+                    '</div>';
+            $('body').append(temp);
+        
+            setTimeout(function(){
+            $('.alert').addClass('on');
+            },200);
+        
+        <?php } elseif( Session::get('msg_code') =="fail") { ?>
+    
+            var temp = '<div class="alert alert-danger alert-dismissable" style="background-color:#ce4942;color:white;">'+
+                '<button type="" class="close" data-dismiss="alert" style="color:white;">&times</button>'+
+                '<?php echo Session::get('msg_text');?>'+
+                '</div>';
+             $('body').append(temp);
+    
+            setTimeout(function(){
+            $('.alert').addClass('on');
+            },200);
+    
+        <?php } ?>
+    });
+    </script>
  </head>  
 
 </html>
