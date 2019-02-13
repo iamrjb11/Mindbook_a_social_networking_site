@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Input; //to use this Input::get('tag')
 use Illuminate\Support\Facades\Redirect; // to use this Redirect::to('url')
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\URL;
 
 
 
@@ -108,8 +109,10 @@ class blogController extends Controller
         date_default_timezone_set("Asia/Dhaka");
         $todays_time = date("g:i a , j F Y");  
         //echo $today;
-        $data = DB::select("select * from users_posts_tbl inner join user_info_tbl on users_posts_tbl.user_id=user_info_tbl.user_id order by srl DESC");
-        //echo $data[0]->user_img;
+        $data = DB::select("select * from users_posts_tbl inner join user_info_tbl on users_posts_tbl.user_id=user_info_tbl.user_id order by post_id DESC");
+        //$num_cmnt = DB::select("select count(*) as sum from comments_tbl group by post_id order by post_id DESC ");
+        
+       
         Session::put('msg_overlap_pblm',0);
         return view('blog_home',['data'=>$data]);
     }
@@ -120,7 +123,7 @@ class blogController extends Controller
         date_default_timezone_set("Asia/Dhaka");
         $todays_time = date("g:i a , j F Y");  
         //echo $today;
-        $data = DB::select("select * from users_posts_tbl order by srl DESC");
+        $data = DB::select("select * from users_posts_tbl order by post_id DESC");
         //echo $data[0]->user_img;
         return view('demo',['data'=>$data]);
     }
@@ -134,7 +137,7 @@ class blogController extends Controller
             $u_id = Session::get('u_id'); // if(Session::has('panier')) for check
             
 
-        $data = DB::select("select * from user_info_tbl inner join users_posts_tbl on users_posts_tbl.user_id='$u_id' and user_info_tbl.user_id='$u_id' order by srl DESC");
+        $data = DB::select("select * from user_info_tbl inner join users_posts_tbl on users_posts_tbl.user_id='$u_id' and user_info_tbl.user_id='$u_id' order by post_id DESC");
         
         return view('blog_profile',['data'=>$data]);
     }
@@ -142,7 +145,7 @@ class blogController extends Controller
     public function create_post(Request $request){
         Session::put('msg_overlap_pblm',1);
         Session::put('msg_code',"success");
-        Session::put('msg_text',"Successfully uploaded your post");
+        Session::put('msg_text',"Your post has uploaded successfully ");
         
         $u_id=$request->session()->get('u_id');
         //echo $u_img;
@@ -240,7 +243,7 @@ class blogController extends Controller
         if(Session::get('msg_overlap_pblm')!=1)
             Session::put('msg_text',"Welcome to about page");
         $u_id = Session::get('u_id');
-        $data = DB::select("select * from user_info_tbl inner join users_posts_tbl on users_posts_tbl.user_id='$u_id' and user_info_tbl.user_id='$u_id' order by srl DESC");
+        $data = DB::select("select * from user_info_tbl inner join users_posts_tbl on users_posts_tbl.user_id='$u_id' and user_info_tbl.user_id='$u_id' order by post_id DESC");
         Session::put('msg_overlap_pblm',0);
         return view('blog_about',['data'=>$data]);
     }
@@ -251,7 +254,7 @@ class blogController extends Controller
         }
 
         $u_id = Session::get('u_id');
-        $data = DB::select("select * from user_info_tbl inner join users_posts_tbl on users_posts_tbl.user_id='$u_id' and user_info_tbl.user_id='$u_id' order by srl DESC");
+        $data = DB::select("select * from user_info_tbl inner join users_posts_tbl on users_posts_tbl.user_id='$u_id' and user_info_tbl.user_id='$u_id' order by post_id DESC");
         Session::put('msg_overlap_pblm',0);
         return view('blog_settings',['data'=>$data]);
     }
@@ -264,10 +267,55 @@ class blogController extends Controller
         $u_id = Session::get('u_id'); // if(Session::has('panier')) for check
             
 
-        $data = DB::select("select * from user_info_tbl inner join users_posts_tbl on users_posts_tbl.user_id='$u_id' and user_info_tbl.user_id='$u_id' order by srl DESC");
-        $data2 = DB::select("select * from user_info_tbl inner join users_posts_tbl on users_posts_tbl.user_id='$other_id' and user_info_tbl.user_id='$other_id' order by srl DESC");
+        $data = DB::select("select * from user_info_tbl inner join users_posts_tbl on users_posts_tbl.user_id='$u_id' and user_info_tbl.user_id='$u_id' order by post_id DESC");
+        $data2 = DB::select("select * from user_info_tbl inner join users_posts_tbl on users_posts_tbl.user_id='$other_id' and user_info_tbl.user_id='$other_id' order by post_id DESC");
         
         //return view('blog_profile',['data'=>$data]);
         return view('blog_others_profile',['data'=>$data,'data2'=>$data2]);
     }
+    public function comments(){
+        $current_url =  \Request::fullUrl();
+        Session::put('current_url',$current_url);
+        //echo  Session::get('current_url'); 
+        Session::put('msg_code',"");  
+        $u_id = Session::get('u_id'); 
+        $post_id = Input::get('post_id');
+        Session::put('post_id',$post_id);
+        $data = DB::select("select * from user_info_tbl inner join users_posts_tbl on users_posts_tbl.user_id='$u_id' and user_info_tbl.user_id='$u_id' and users_posts_tbl.post_id='$post_id' ");
+        $cmnts = DB::select("select * from user_info_tbl inner join comments_tbl on user_info_tbl.user_id=comments_tbl.other_user_id and comments_tbl.post_id='$post_id' order by comments_tbl.comment_id DESC");
+        
+        //updated comments number in users_posts_tbl
+        $num_cmnt = DB::select("select count(*) as sum,post_id from comments_tbl group by post_id  ");
+        foreach ($num_cmnt as $n_cnt) {
+            DB::update("update users_posts_tbl set comments=? where post_id=?",[$n_cnt->sum,$n_cnt->post_id]);
+            //echo $n_cnt->post_id."  ".$n_cnt->sum."<br>";
+        }
+
+        $num_cmnt = DB::select("select count(*) as sum from comments_tbl where post_id='$post_id'  ");
+
+        return view('mb_comments',['data'=>$data,'cmnts'=>$cmnts,'num_cmnt'=>$num_cmnt]);
+        //echo "<pre>".$cmnts[0]->user_name."</pre>";
+    }
+    public function create_comment(Request $request){
+        
+        //return redirect('/blog/comments?post_id=20');
+
+        
+       // echo  Session::get('current_url'); 
+        Session::put('msg_code',"");  
+        $u_id = Session::get('u_id'); 
+        $post_id = Session::get('post_id');
+
+        $o_u_id = $u_id;
+        date_default_timezone_set("Asia/Dhaka");
+        $todays_time = date("g:i a , j F Y");  
+        $comment = $request->get('cmnt_txt');
+
+        $data = DB::select("select * from user_info_tbl inner join users_posts_tbl on users_posts_tbl.user_id='$u_id' and user_info_tbl.user_id='$u_id' and users_posts_tbl.post_id='$post_id' ");
+        DB::insert("insert into comments_tbl (post_id,other_user_id,comment_text,comment_time) values(?,?,?,?)",[$post_id,$o_u_id,$comment,$todays_time]);
+        
+        return redirect(Session::get('current_url'));
+        //echo "<pre>".$cmnts[0]->user_name."</pre>";
+    }
+
 }

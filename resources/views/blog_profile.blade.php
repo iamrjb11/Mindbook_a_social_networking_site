@@ -50,14 +50,8 @@ include "../resources/views/templates/resourcesFile.php";
       border-radius:6px;
       box-shadow: 0 0 20px rgba(0,0,0,.15);
     }
-    .sts_name{
-      font-size:20px;
-      
-    }
-    .sts_img{
-      width:45px;
-      height:45px;
-    }
+    
+    
     .pro_pic{
       width:300px;
       height:300px;
@@ -82,13 +76,7 @@ include "../resources/views/templates/resourcesFile.php";
     .pro_pic_layer{
       padding-left:12%;
     }
-    .searchTxt{
-      width:290%;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      padding: 6px 10px;
-      color:black;
-    }
+    
     @media only screen and (max-width: 500px){
       .searchTxt{
         width:100%;
@@ -138,6 +126,9 @@ include "../resources/views/templates/resourcesFile.php";
       width:100%;
       
     }
+    .table_td{
+      padding:0px;
+    }
 }
   </style>
 </head>
@@ -145,7 +136,7 @@ include "../resources/views/templates/resourcesFile.php";
 <body style="background-color:#e9ebee;">
 <nav class="navbar navbar-expand-sm bg-primary navbar-dark sticky-top">
 
-  <a class="nav-link" href="{{Session::get('host_name')}}/blog/home" style="padding-left:5%;"><img src="/images/mindbook.png" alt="" style="width:40px;height:30px;"></a>
+  <a class="nav-link" href="{{Session::get('host_name')}}/blog/home" style="padding-left:5%;"><img src="/images/mindbook.png" alt="" class="sts_img"></a>
   <form class="navbar-form navbar-left" method="post" action="{{ URL::to('/blog/login') }}">
     {{ csrf_field() }}
       <div class="form-group">
@@ -284,11 +275,11 @@ include "../resources/views/templates/resourcesFile.php";
       ?>
       <p><?php echo $dt->status; ?></p>
       <table style="background-color:#e9ebee;width:100%" >
-        <tr style="padding:0px 0px;">
-          <td style="padding:0px 0px;"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-thumbs-up" style="font-size:20px;"></span> </button></td>
-          <td style="padding:0px 5%;">Likes : 0</td>
-          <td style="padding:0px 5%;"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-send" style="font-size:20px;"></span> </button></td>
-          <td style="padding:0px 5%;">Comments : 0</td>
+        <tr >
+          <td ><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-thumbs-up" style="font-size:20px;"></span> </button></td>
+          <td class="table_td">Likes : 0</td>
+          <td class="table_td"><a href="{{Session::get('host_name')}}/blog/comments?post_id={{$dt->post_id}}" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-send" style="font-size:20px;"></span> </a></td>
+          <td class="table_td">Comments : {{$dt->comments}}</td>
         </tr>
       </table>
     

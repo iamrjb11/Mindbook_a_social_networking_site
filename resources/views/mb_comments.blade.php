@@ -27,17 +27,36 @@ foreach($host as $ht){
 
 </script>
   <style>
-
+    .p_tag{
+      width:100%;
+      height:2px;
+      background-color:#007bff;
+    }
+    
     .outlayer{
      
       background-color:white;
-      width:57%;
+      width:100%;
       height:40%;
       padding:20px;
       border-radius:6px;
       box-shadow: 0 0 20px rgba(0,0,0,.15);
     }
-    
+    .icon{
+        padding-left:5%;
+    }
+    .sts_name{
+      font-size:20px;
+      
+    }
+    .comment_sts_name{
+      font-size:14px;
+      
+    }
+    .comment_sts_img{
+      width:30px;
+      height:30px;
+    }
     
     
     .sts_like{
@@ -47,14 +66,13 @@ foreach($host as $ht){
     
     .textarea{
       margin: 0px opx 0px 0px; 
-      height: 150px; 
-      width: 57%;
+      height: 50px; 
+      width: 100%;
       border-radius:5px;
       padding-left:10px;
       padding-top:7px;
       border:1px solid #c5c5c5;
     }
-    
     @media only screen and (max-width: 500px){
       .searchTxt{
         width:100%;
@@ -78,7 +96,12 @@ foreach($host as $ht){
       .outlayer{
         width:100%;
       }
-      
+      .table_td{
+        padding:0px 0px;
+    }
+    .nav-item{
+        padding-left:10%;
+    }
 
     }
   </style>
@@ -86,7 +109,7 @@ foreach($host as $ht){
 
 <body>
 <nav class="navbar navbar-expand-sm bg-primary navbar-dark sticky-top">
-<a class="nav-link" href="{{Session::get('host_name')}}/blog/home" style="padding-left:5%;"><img src="/images/mindbook.png" alt="" class="sts_img"></a>
+<a class="icon" href="{{Session::get('host_name')}}/blog/home" ><img src="/images/mindbook.png" alt="" class="sts_img"></a>
 <form class="navbar-form navbar-left" method="post" action="{{ URL::to('/blog/login') }}">
   {{ csrf_field() }}
     <div class="form-group">
@@ -140,50 +163,55 @@ foreach($host as $ht){
 
 </nav>
 
-<div style="padding-top:0px;padding-left:5%;padding-right:5%">
-    <form method="post" action="{{ URL::to('/blog/create_post') }}">
-        {{ csrf_field() }}
-        <div style="text-align:left;">
-        <div style="font-size:25px;font-weight:bold;">Create a post</div>
-        </div>
-        <div>
-        <textarea rows="5" name="status" onkeypress="onTestChange();" class="textarea" placeholder="What's on your mind ... ? "></textarea>
-        </div>
-        <div>
-        <input type="submit" name="" value="Share" class="mybtn btn-primary"></div>
-    </form>
 <br> 
-<div id="sts" style="">
-@foreach($data as $dt)
-<br>
-  <div class="outlayer">
-    <div>
-    <img src="{{$dt->user_img}}" class="sts_img">
-    <a class="sts_name" href="{{Session::get('host_name')}}/blog/others_profile?other_id={{$dt->user_id}}">{{$dt->user_name}}</a><p>Time : <span style="color:#767a82">{{ $dt->time}}</span></p>
-      
-      <?php 
-        $dt->status= nl2br($dt->status);
-      ?>
-      <p><?php echo $dt->status; ?></p>
-      <table style="background-color:#e9ebee;width:100%" >
-        <tr >
-          <td ><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-thumbs-up" style="font-size:20px;"></span> </button></td>
-          <td class="table_td">Likes : 0</td>
-          <td class="table_td"><a href="{{Session::get('host_name')}}/blog/comments?post_id={{$dt->post_id}}" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-send" style="font-size:20px;"></span> </a></td>
-          <td class="table_td">Comments : {{$dt->comments}}</td>
-        </tr>
-      </table>
-    
-    
-  </div>
-  </div>
+<div id="sts" style="padding:0px 20%">
 
-  @endforeach
+    <br>
+    <div class="outlayer">
+    <div>
+        <img src="{{$data[0]->user_img}}" class="sts_img">
+        <a class="sts_name" href="{{Session::get('host_name')}}/blog/others_profile?other_id={{$data[0]->user_id}}">{{$data[0]->user_name}}</a><p>Time : <span style="color:#767a82">{{ $data[0]->time}}</span></p>
+        
+        <?php 
+            $data[0]->status= nl2br($data[0]->status);
+        ?>
+        <p><?php echo $data[0]->status; ?></p>
+        <table style="background-color:#e9ebee;width:100%" >
+            <tr >
+            <td ><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-thumbs-up" style="font-size:20px;"></span> </button></td>
+            <td class="table_td">Likes : 0</td>
+            <td class="table_td"><a href="{{Session::get('host_name')}}/blog/comments?post_id={{$data[0]->post_id}}" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-send" style="font-size:20px;"></span> </a></td>
+            <td class="table_td">Comments : {{$num_cmnt[0]->sum}}</td>
+            </tr>
+        </table><br>
+        <form method="post" action="{{ URL::to('/blog/create_comment') }}">
+        {{ csrf_field() }}  
+        
+            <textarea rows="" cols="" name="cmnt_txt" class="textarea" placeholder="Write your comment ..."></textarea><br> 
+            <input type="submit" name="" class="btn btn-success" value="Commet" style="width:100%;">
+        </form>
+        
+        
+    </div>
+    </div><br>
+    <div class="outlayer">
+    @foreach($cmnts as $ct)
+    <div>
+        <img src="{{$ct->user_img}}" class="comment_sts_img">
+        <a class="comment_sts_name" href="{{Session::get('host_name')}}/blog/others_profile?other_id={{$ct->user_id}}">{{$ct->user_name}}</a><p style="font-size:12px;">Time : <span style="color:#767a82">{{ $ct->comment_time}}</span></p>
+        
+        <?php 
+            $ct->comment = nl2br($ct->comment_text);
+        ?>
+        <p><?php echo $ct->comment_text; ?></p>
+    </div>
+    <p class="p_tag"></p>
+    @endforeach
+
+    </div>
+
 
   
 </div>
 
-</div>
-
 </body>
-</html> 

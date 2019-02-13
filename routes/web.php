@@ -20,6 +20,7 @@ Route::get('/blog',function(){
         //echo $crop;
         $host = explode($crop,$full,2);
         Session::put('host_name',$host[0]);
+        //echo $host[0];
         Session::put('msg_overlap_pblm', 0);
         
         return view('blog');
@@ -33,6 +34,7 @@ Route::get('/blog/about','blogController@about');
 Route::get('/blog/settings','blogController@settings');
 Route::get('/blog/search','blogController@search');
 Route::get('/blog/others_profile','blogController@others_profile');
+Route::get('/blog/comments','blogController@comments');
 
 Route::get('/blog/demo','blogController@demo');
 
@@ -46,6 +48,7 @@ Route::post('/blog/save_about','blogController@save_about');
 
 Route::post('/blog/change_password','blogController@change_password');
 Route::post('/blog/change_email','blogController@change_email');
+Route::post('/blog/create_comment','blogController@create_comment');
 
 
 

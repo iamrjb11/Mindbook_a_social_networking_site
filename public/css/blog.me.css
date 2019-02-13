@@ -75,3 +75,20 @@ body{
   right:20px;
   opacity:1;
 }
+.nav-item{
+        padding-left:10px;
+  }
+.table_td{
+      padding:0px 5%;
+}
+.searchTxt{
+      width:290%;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 6px 10px;
+      color:black;
+  }
+  .sts_img{
+      width:40px;
+      height:34px;
+    }
