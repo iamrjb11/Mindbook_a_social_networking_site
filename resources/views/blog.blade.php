@@ -52,7 +52,7 @@ include "../resources/views/templates/resourcesFile.php";
   <div class="container-fluid">
     <div class="navbar-header"  style="padding-right:500px;"><a href="#" style="color:white;font-size:27px;text-decoration: none;">
     
-      <div class="web_name" style=""><img src="/images/111.png" alt="" style="width:40px;height:40px;"> My Bolg</div>
+      <div class="web_name" style=""><img src="/images/mindbook.png" alt="" style="width:40px;height:30px;"> Mindbook</div>
       </a>
     </div>
     

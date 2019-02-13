@@ -145,23 +145,23 @@ include "../resources/views/templates/resourcesFile.php";
 <body style="background-color:#e9ebee;">
 <nav class="navbar navbar-expand-sm bg-primary navbar-dark sticky-top">
 
-
+  <a class="nav-link" href="{{Session::get('host_name')}}/blog/home" style="padding-left:5%;"><img src="/images/mindbook.png" alt="" style="width:40px;height:30px;"></a>
+  <form class="navbar-form navbar-left" method="post" action="{{ URL::to('/blog/login') }}">
+    {{ csrf_field() }}
+      <div class="form-group">
+      <div class="dropdown">
+        <input type="text" onkeyup="search(this.value);" class="searchTxt" id="searchTxt" placeholder="Search" >
+      
+        <div class="dropdown-content" id="drop_content">
+          
+        </div>
+      </div>
+      </div>
+  </form>
 <div class="container-fluid">
 
 <div class="navbar-header"  style="padding-right:500px;">
-  <a class="navbar-brand" href="{{Session::get('host_name')}}/blog/home" style="font-size:25px;">My Blogs</a>
-    <form class="navbar-form navbar-left" method="post" action="{{ URL::to('/blog/login') }}">
-  {{ csrf_field() }}
-    <div class="form-group">
-    <div class="dropdown">
-      <input type="text" onkeyup="search(this.value);" class="searchTxt" id="searchTxt" placeholder="Search" >
-     
-      <div class="dropdown-content" id="drop_content">
-        
-      </div>
-    </div>
-    </div>
-  </form>
+
   </div>
   
   <div>
@@ -277,13 +277,23 @@ include "../resources/views/templates/resourcesFile.php";
   <div class="outlayer">
     <div>
     <img src="{{$dt->user_img}}" class="sts_img">
-    <a class="sts_name" href="#">{{$dt->user_name}}</a><p>Time : <span style="color:#767a82">{{ $dt->time}}</span></p>
+    <a class="sts_name" href="{{Session::get('host_name')}}/blog/others_profile?other_id={{$dt->user_id}}">{{$dt->user_name}}</a><p>Time : <span style="color:#767a82">{{ $dt->time}}</span></p>
       
-      <p>{{$dt->status}}</p>
-    </div><br>
-    <div>
-      <a href="#"><img src="/images/11.png" alt="" class="sts_like"> <span style="font-size: 20px;padding-top:30px;">Like</span></a>
-    </div>
+      <?php 
+        $dt->status= nl2br($dt->status);
+      ?>
+      <p><?php echo $dt->status; ?></p>
+      <table style="background-color:#e9ebee;width:100%" >
+        <tr style="padding:0px 0px;">
+          <td style="padding:0px 0px;"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-thumbs-up" style="font-size:20px;"></span> </button></td>
+          <td style="padding:0px 5%;">Likes : 0</td>
+          <td style="padding:0px 5%;"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-send" style="font-size:20px;"></span> </button></td>
+          <td style="padding:0px 5%;">Comments : 0</td>
+        </tr>
+      </table>
+    
+    
+  </div>
   </div>
   @endforeach
 

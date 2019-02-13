@@ -96,15 +96,12 @@ foreach($host as $ht){
 
 <body>
 <nav class="navbar navbar-expand-sm bg-primary navbar-dark sticky-top">
-
-
-<div class="container-fluid">
-
-  <div class="navbar-header"  style="padding-right:500px;">
-  <a class="navbar-brand" href="{{Session::get('host_name')}}/blog/home" style="font-size:25px;">My Blogs</a>
-    <form class="navbar-form navbar-left" method="post" action="{{ URL::to('/blog/login') }}">
+<a class="nav-link" href="{{Session::get('host_name')}}/blog/home" style="padding-left:5%;"><img src="/images/mindbook.png" alt="" style="width:40px;height:30px;"></a>
+<form class="navbar-form navbar-left" method="post" action="{{ URL::to('/blog/login') }}">
   {{ csrf_field() }}
     <div class="form-group">
+   
+
     <div class="dropdown">
       <input type="text" onkeyup="search(this.value);" class="searchTxt" id="searchTxt" placeholder="Search" >
      
@@ -114,6 +111,11 @@ foreach($host as $ht){
     </div>
     </div>
   </form>
+<div class="container-fluid">
+
+  <div class="navbar-header"  style="padding-right:500px">
+
+    
   </div>
   
   <div>
@@ -173,16 +175,23 @@ foreach($host as $ht){
         $dt->status= nl2br($dt->status);
       ?>
       <p><?php echo $dt->status; ?></p>
-    </div><br>
-    <p></p>
-    <div>
-      <a href="#"><img src="/images/11.png" alt="" class="sts_like"> <span style="font-size: 20px;padding-top:30px;">Like</span></a>
-    </div>
+      <table style="background-color:#e9ebee;width:100%" >
+        <tr style="padding:0px 0px;">
+          <td style="padding:0px 0px;"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-thumbs-up" style="font-size:20px;"></span> </button></td>
+          <td style="padding:0px 5%;">Likes : 0</td>
+          <td style="padding:0px 5%;"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-send" style="font-size:20px;"></span> </button></td>
+          <td style="padding:0px 5%;">Comments : 0</td>
+        </tr>
+      </table>
+    
+    
+  </div>
   </div>
   @endforeach
 
   
 </div>
+
 </div>
 
 </body>

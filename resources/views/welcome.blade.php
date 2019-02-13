@@ -91,8 +91,13 @@
                     <a href="https://nova.laravel.com">Nova</a>
                     <a href="https://forge.laravel.com">Forge</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
+                </div><br>
+                <div style="color:blue;font-weight:bold;">
+                @RK Rajib Khan
                 </div>
             </div>
+            
         </div>
+        
     </body>
 </html>

@@ -65,24 +65,24 @@ include "../resources/views/templates/resourcesFile.php";
 </head>
 <body>
 <nav class="navbar navbar-expand-sm bg-primary navbar-dark sticky-top">
-
+  <a class="nav-link" href="{{Session::get('host_name')}}/blog/home" style="padding-left:5%;"><img src="/images/mindbook.png" alt="" style="width:40px;height:30px;"></a>
+  <form class="navbar-form navbar-left" method="post" action="{{ URL::to('/blog/login') }}">
+    {{ csrf_field() }}
+      <div class="form-group">
+      <div class="dropdown">
+        <input type="text" onkeyup="search(this.value);" class="searchTxt" id="searchTxt" placeholder="Search" >
+      
+        <div class="dropdown-content" id="drop_content">
+          
+        </div>
+      </div>
+      </div>
+  </form>
 
 <div class="container-fluid">
 
   <div class="navbar-header"  style="padding-right:500px;">
-  <a class="navbar-brand" href="{{Session::get('host_name')}}/blog/home" style="font-size:25px;">My Blogs</a>
-    <form class="navbar-form navbar-left" method="post" action="{{ URL::to('/blog/login') }}">
-  {{ csrf_field() }}
-    <div class="form-group">
-    <div class="dropdown">
-      <input type="text" onkeyup="search(this.value);" class="searchTxt" id="searchTxt" placeholder="Search" >
-     
-      <div class="dropdown-content" id="drop_content">
-        
-      </div>
-    </div>
-    </div>
-  </form>
+  
   </div>
   
   <div>
