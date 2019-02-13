@@ -30,5 +30,16 @@ function search(val){
     
   }
 
+//how to check enter key code when write a status in textarea textbox
+function onTestChange() {
+    var key = window.event.keyCode;
 
-  
+    // If the user has pressed enter
+    if (key === 13) {
+        document.getElementById("txtArea").value = document.getElementById("txtArea").value + "\n*";
+        return false;
+    }
+    else {
+        return true;
+    }
+}

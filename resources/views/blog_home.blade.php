@@ -10,12 +10,24 @@ else
   Session::put('title','Home');
 include "../resources/views/templates/resourcesFile.php";
 
+//try
+$ts = "Nice to * meet you.* Whats up * guyzzzzzz";
+$host = explode('*',$ts);
+$sv="";
 
+foreach($host as $ht){
+  //echo $ht."<br>";
+  $sv=$sv.$ht."<br>";
+}
+//echo $sv;
 
 ?>
 <head>
+<script>
 
+</script>
   <style>
+ 
     .outlayer{
      
       background-color:white;
@@ -143,7 +155,7 @@ include "../resources/views/templates/resourcesFile.php";
         <div style="font-size:25px;font-weight:bold;">Create a post</div>
         </div>
         <div>
-        <textarea rows="5" name="status" class="textarea" placeholder="What's on your mind ... ? "></textarea>
+        <textarea rows="5" name="status" onkeypress="onTestChange();" class="textarea" placeholder="What's on your mind ... ? "></textarea>
         </div>
         <div>
         <input type="submit" name="" value="Share" class="mybtn btn-primary"></div>
@@ -157,8 +169,12 @@ include "../resources/views/templates/resourcesFile.php";
     <img src="{{$dt->user_img}}" class="sts_img">
     <a class="sts_name" href="{{Session::get('host_name')}}/blog/others_profile?other_id={{$dt->user_id}}">{{$dt->user_name}}</a><p>Time : <span style="color:#767a82">{{ $dt->time}}</span></p>
       
-      <p>{{$dt->status}}</p>
+      <?php 
+        $dt->status= nl2br($dt->status);
+      ?>
+      <p><?php echo $dt->status; ?></p>
     </div><br>
+    <p></p>
     <div>
       <a href="#"><img src="/images/11.png" alt="" class="sts_like"> <span style="font-size: 20px;padding-top:30px;">Like</span></a>
     </div>
