@@ -180,7 +180,7 @@ foreach($host as $ht){
             <tr >
             <td ><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-thumbs-up" style="font-size:20px;"></span> </button></td>
             <td class="table_td">Likes : 0</td>
-            <td class="table_td"><a href="{{Session::get('host_name')}}/blog/comments?post_id={{$data[0]->post_id}}" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-send" style="font-size:20px;"></span> </a></td>
+            <td class="table_td"><a href="{{Session::get('host_name')}}/blog/comments?u_id={{$data[0]->user_id}}&post_id={{$data[0]->post_id}}" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-send" style="font-size:20px;"></span> </a></td>
             <td class="table_td">Comments : {{$num_cmnt[0]->sum}}</td>
             </tr>
         </table><br>
