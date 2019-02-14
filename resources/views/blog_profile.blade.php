@@ -263,7 +263,7 @@ include "../resources/views/templates/resourcesFile.php";
 </div>
 <br> 
 <div id="sts" style="">
-@foreach($data as $dt)
+@foreach($posts as $dt)
 <br>
   <div class="outlayer">
     <div>

@@ -39,6 +39,13 @@ include "../resources/views/templates/resourcesFile.php";
       border-radius:6px;
       box-shadow: 0 0 20px rgba(0,0,0,.15);
     }
+    .pro_pic{
+      width:200px;
+      height:200px;
+      border-radius:6px;
+      border:2px solid #007bff;
+      box-shadow: 0 0 20px rgba(0,0,0,.15);
+    }
     @media only screen and (max-width: 500px){
       .searchTxt{
         width:100%;
@@ -124,6 +131,20 @@ include "../resources/views/templates/resourcesFile.php";
 <div class="div_form">
   <form class="form-horizontal" enctype="multipart/form-data"  method="post" action="{{ URL::to('/blog/save_about') }}">
   {{ csrf_field() }}
+      <div class="form-group">
+        <label class="control-label col-sm-7" for="email">
+          <div class="pro_pic_layer">
+            <img src="{{$data[0]->user_img}}" class="pro_pic">
+          </div>
+        </label>
+        
+        </div>
+        <div class="form-group">
+        <label class="control-label col-sm-2" for="email">Profile Picture :</label>
+        <div class="col-sm-10">
+          <input type="file" class="form-control" id="email" placeholder="" name="img"  required>
+        </div>
+      </div>
       <div class="form-group">
         <label class="control-label col-sm-2" for="email">Full Name :</label>
         <div class="col-sm-10">

@@ -136,10 +136,10 @@ class blogController extends Controller
         else 
             $u_id = Session::get('u_id'); // if(Session::has('panier')) for check
             
-
-        $data = DB::select("select * from user_info_tbl inner join users_posts_tbl on users_posts_tbl.user_id='$u_id' and user_info_tbl.user_id='$u_id' order by post_id DESC");
+        $data = DB::select("select * from user_info_tbl where user_id='$u_id' ");
+        $posts = DB::select("select * from user_info_tbl inner join users_posts_tbl on users_posts_tbl.user_id='$u_id' and user_info_tbl.user_id='$u_id' order by post_id DESC");
         
-        return view('blog_profile',['data'=>$data]);
+        return view('blog_profile',['data'=>$data,'posts'=>$posts]);
     }
 
     public function create_post(Request $request){
@@ -243,7 +243,7 @@ class blogController extends Controller
         if(Session::get('msg_overlap_pblm')!=1)
             Session::put('msg_text',"Welcome to about page");
         $u_id = Session::get('u_id');
-        $data = DB::select("select * from user_info_tbl inner join users_posts_tbl on users_posts_tbl.user_id='$u_id' and user_info_tbl.user_id='$u_id' order by post_id DESC");
+        $data = DB::select("select * from user_info_tbl where user_id='$u_id' ");
         Session::put('msg_overlap_pblm',0);
         return view('blog_about',['data'=>$data]);
     }
