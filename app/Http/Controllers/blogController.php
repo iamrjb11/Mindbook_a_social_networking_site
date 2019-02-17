@@ -254,7 +254,7 @@ class blogController extends Controller
         }
 
         $u_id = Session::get('u_id');
-        $data = DB::select("select * from user_info_tbl inner join users_posts_tbl on users_posts_tbl.user_id='$u_id' and user_info_tbl.user_id='$u_id' order by post_id DESC");
+        $data = DB::select("select * from user_info_tbl where user_id='$u_id' ");
         Session::put('msg_overlap_pblm',0);
         return view('blog_settings',['data'=>$data]);
     }

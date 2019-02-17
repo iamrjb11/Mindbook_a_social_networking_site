@@ -12,7 +12,7 @@
 */
 
 //For blog
-Route::get('/blog',function(){
+Route::get('/',function(){
     if(Session::get('msg_overlap_pblm') != 1) Session::put('msg_code',"");
         $full=url()->current();
         //return view('blog');
@@ -78,10 +78,11 @@ Route::post('/blog/create_comment','blogController@create_comment');
 Route::resource('course','resourceController');
 Route::post('/course/show','resourceController@show');
 Route::get('/course/create','resourceController@create')->middleware('rrk');
-Route::get('/', function () {
+/*Route::get('/', function () {
     //do what are u want
     return view('welcome');
 });
+*/
 Route::get('/rajib',function(){
     return view('course/rajib');
 });
