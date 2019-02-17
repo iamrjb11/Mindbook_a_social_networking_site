@@ -175,12 +175,19 @@ class blogController extends Controller
         $collage_group = $request->input('collage_group');
         $school_name = $request->input('school_name');
         $school_group = $request->input('school_group');
-        $u_img ="";
+        $u_img =$request->input('pro_img');
+        if($u_img){
+            DB::update("update user_info_tbl set user_name=?,user_img=?,user_mobile=?,live=?,versity_name=?,versity_department=?,versity_degree=?,collage_name=?,collage_group=?,school_name=?,school_group=? where user_id=?",[$u_name,$u_img,$mobile,$live,$versity_name,$versity_department,$versity_degree,$collage_name,$collage_group,$school_name,$school_group,$u_id]);
+        
+        }
         //echo $u_img;
         
-        DB::update("update user_info_tbl set user_name=?,user_mobile=?,live=?,versity_name=?,versity_department=?,versity_degree=?,collage_name=?,collage_group=?,school_name=?,school_group=? where user_id=?",[$u_name,$mobile,$live,$versity_name,$versity_department,$versity_degree,$collage_name,$collage_group,$school_name,$school_group,$u_id]);
-        Session::put('u_name',$u_name);
         
+        else{
+            DB::update("update user_info_tbl set user_name=?,user_mobile=?,live=?,versity_name=?,versity_department=?,versity_degree=?,collage_name=?,collage_group=?,school_name=?,school_group=? where user_id=?",[$u_name,$mobile,$live,$versity_name,$versity_department,$versity_degree,$collage_name,$collage_group,$school_name,$school_group,$u_id]);
+        
+        }
+        Session::put('u_name',$u_name);
         
         return $this->about();
         //return redirect('/blog/home');
@@ -269,10 +276,10 @@ class blogController extends Controller
             
 
         $data = DB::select("select * from user_info_tbl inner join users_posts_tbl on users_posts_tbl.user_id='$u_id' and user_info_tbl.user_id='$u_id' order by post_id DESC");
-        $data2 = DB::select("select * from user_info_tbl inner join users_posts_tbl on users_posts_tbl.user_id='$other_id' and user_info_tbl.user_id='$other_id' order by post_id DESC");
+        $others_info = DB::select("select * from user_info_tbl where user_id='$other_id' ");
         
         //return view('blog_profile',['data'=>$data]);
-        return view('blog_others_profile',['data'=>$data,'data2'=>$data2]);
+        return view('blog_others_profile',['data'=>$data,'others_info'=>$others_info]);
     }
     public function comments(){
         $current_url =  \Request::fullUrl();

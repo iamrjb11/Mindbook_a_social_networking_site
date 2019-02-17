@@ -142,7 +142,7 @@ include "../resources/views/templates/resourcesFile.php";
         <div class="form-group">
         <label class="control-label col-sm-2" for="email">Profile Picture :</label>
         <div class="col-sm-10">
-          <input type="file" class="form-control" id="email" placeholder="" name="img"  required>
+          <input type="file" class="form-control" id="email" placeholder="" name="pro_img" value="{{$data[0]->user_name}}" >
         </div>
       </div>
       <div class="form-group">
