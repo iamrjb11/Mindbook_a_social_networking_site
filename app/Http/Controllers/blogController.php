@@ -230,9 +230,10 @@ class blogController extends Controller
     public function search(){
         $u_id = Session::get('u_id');
         $u_name= Input::get('s_value');
-        //echo $u_name;
-        $data = DB::select("select user_id,user_name from user_info_tbl where user_name like '%$u_name%' and not user_id='$u_id'  ");
-        //echo $data;
+        //echo "User id : ".$u_id."User Name :".$u_name;
+        $data = DB::select("select user_id,user_name from user_info_tbl where lower(user_name) like '%$u_name%' and not user_id='$u_id'  ");
+        $len = sizeof($data);
+        //echo "Search in Controller<br>".$len;
     
        
         return view('search',['data'=>$data]);

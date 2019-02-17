@@ -83,6 +83,21 @@ include "../resources/views/templates/resourcesFile.php";
       padding: 6px 10px;
       color:black;
     }
+    @media only screen and (max-width: 1300px){
+      .p_tag{
+        width:600px;
+      }
+    }
+    @media only screen and (max-width: 1200px){
+      .p_tag{
+        width:450px;
+      }
+    }
+    @media only screen and (max-width: 1100px){
+      .p_tag{
+        width:400px;
+      }
+    }
     @media only screen and (max-width: 500px){
       .searchTxt{
         width:100%;

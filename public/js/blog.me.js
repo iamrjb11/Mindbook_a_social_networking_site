@@ -1,6 +1,6 @@
 function search(val){
     var search_value = val;
-    console.log("Search Value : "+search_value);
+    //console.log("Search Value : "+search_value);
 
 
     if(search_value!=""){
@@ -13,7 +13,7 @@ function search(val){
          //console.log("OK");
             if(this.readyState == 4 && this.status == 200){
                  document.getElementById("drop_content").innerHTML = this.responseText;
-                 console.log("Ajax code in");
+                 //console.log("Ajax code in");
                  $(document).ready(function(){
                     $(".dropdown-content").css("display","block");
                   });

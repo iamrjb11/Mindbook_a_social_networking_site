@@ -27,11 +27,7 @@ include "../resources/views/templates/resourcesFile.php";
       padding-top:7px;
       border:1px solid #c5c5c5;
     }
-    .p_tag{
-      width:700px;
-      height:2px;
-      background-color:#007bff;
-    }
+    
     .outlayer{
      
       background-color:white;
@@ -75,6 +71,26 @@ include "../resources/views/templates/resourcesFile.php";
     }
     .pro_pic_layer{
       padding-left:12%;
+    }
+    .p_tag{
+      width:700px;
+      height:2px;
+      background-color:#007bff;
+    }
+    @media only screen and (max-width: 1300px){
+      .p_tag{
+        width:600px;
+      }
+    }
+    @media only screen and (max-width: 1200px){
+      .p_tag{
+        width:450px;
+      }
+    }
+    @media only screen and (max-width: 1100px){
+      .p_tag{
+        width:400px;
+      }
     }
     
     @media only screen and (max-width: 500px){
@@ -153,7 +169,7 @@ include "../resources/views/templates/resourcesFile.php";
 
 <div class="navbar-header"  style="padding-right:500px;">
 
-  </div>
+</div>
   
   <div>
     <ul class="navbar-nav">
