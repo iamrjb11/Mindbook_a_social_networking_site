@@ -28,6 +28,7 @@ Route::get('/',function(){
 Route::get('/blog/logout','blogController@logout');
 //For all get requests
 
+
 Route::get('/blog/home','blogController@home');
 Route::get('/blog/profile','blogController@profile');
 Route::get('/blog/about','blogController@about');
