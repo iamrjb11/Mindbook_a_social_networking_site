@@ -20,7 +20,7 @@ function search(val){
             }
         };
         
-        xhttp.open("GET","/blog/search?s_value="+search_value,true);
+        xhttp.open("GET","/search?s_value="+search_value,true);
         xhttp.send();
 
     }
