@@ -25,31 +25,32 @@ Route::get('/',function(){
         
         return view('blog');
 });
-Route::get('/blog/logout','blogController@logout');
+Route::get('/logout','mindbookController@logout');
 //For all get requests
 
 
-Route::get('/blog/home','blogController@home');
-Route::get('/blog/profile','blogController@profile');
-Route::get('/blog/about','blogController@about');
-Route::get('/blog/settings','blogController@settings');
-Route::get('/blog/search','blogController@search');
-Route::get('/blog/others_profile','blogController@others_profile');
-Route::get('/blog/comments','blogController@comments');
+Route::get('/home','mindbookController@home');
+Route::get('/profile','mindbookController@profile');
 
-Route::get('/blog/demo','blogController@demo');
+Route::get('/about','mindbookController@about');
+Route::get('/settings','mindbookController@settings');
+Route::get('/search','mindbookController@search');
+Route::get('/others_profile','mindbookController@others_profile');
+Route::get('/comments','mindbookController@comments');
+
+Route::get('/blog/demo','mindbookController@demo');
 
 //For all post requests
-Route::post('/blog/login','blogController@login');
-Route::post('/blog/signup','blogController@signup');
+Route::post('/login','mindbookController@login');
+Route::post('/signup','mindbookController@signup');
 
 
-Route::post('/blog/create_post','blogController@create_post');
-Route::post('/blog/save_about','blogController@save_about');
+Route::post('/create_post','mindbookController@create_post');
+Route::post('/save_about','mindbookController@save_about');
 
-Route::post('/blog/change_password','blogController@change_password');
-Route::post('/blog/change_email','blogController@change_email');
-Route::post('/blog/create_comment','blogController@create_comment');
+Route::post('/change_password','mindbookController@change_password');
+Route::post('/change_email','mindbookController@change_email');
+Route::post('/create_comment','mindbookController@create_comment');
 
 
 
@@ -88,6 +89,6 @@ Route::get('/rajib',function(){
     return view('course/rajib');
 });
 
-Route::get('/about','myController@about');
+Route::get('/about_us','myController@about');
 Route::get('/contract','myController@contract');
 Route::get('/cool','resourceController@create')->middleware('rrk');

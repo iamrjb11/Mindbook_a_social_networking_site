@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\URL;
 
 
 
-class blogController extends Controller
+class mindbookController extends Controller
 {
     public static $u_id;
     public function blog(){
@@ -69,7 +69,7 @@ class blogController extends Controller
                     Session::put('msg_overlap_pblm',1);
                     Session::put('msg_code',"success");
                     Session::put('msg_text',"Logged in");
-                    return redirect('/blog/home');
+                    return redirect('/home');
                 }
                 else return $this->login_failed();
             }
@@ -144,11 +144,13 @@ class blogController extends Controller
         $status = $request->get('status');
         DB::insert("insert into users_posts_tbl (user_id,status,time,likes) values(?,?,?,?)",[$u_id,$status,$todays_time,0]);
         
-        return redirect('/blog/home');
+        return redirect('/home');
 
     }
     public function save_about(Request $request){
+        Session::put('msg_box_override_code',0);
         Session::put('msg_overlap_pblm',0);
+        
         Session::put('msg_code',"");
         Session::put('msg_text',"Successfully saved all");
         
@@ -168,45 +170,30 @@ class blogController extends Controller
         //$u_img =$request->file('u_img');
         //echo $u_img;
 
-        Session::put('msg_box_code',0);
-        if($request->filled('live_txt')){
-            echo "Cool";
-            $this->validate($request, [
-                'u_img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
-            ]);
-
-            $image = $request->file('u_img');
-            $u_img = rand().'.'.$image->getClientOriginalExtension();
-            $destinationPath = public_path('/images');
-            $image->move($destinationPath, $u_img);
-            $u_img = "/"."images"."/".$u_img;
-            //DB::update("update user_info_tbl set user_name=?,user_img=?,user_mobile=?,live=?,versity_name=?,versity_department=?,versity_degree=?,collage_name=?,collage_group=?,school_name=?,school_group=? where user_id=?",[$u_name,$u_img,$mobile,$live,$versity_name,$versity_department,$versity_degree,$collage_name,$collage_group,$school_name,$school_group,$u_id]);
-            Session::put('msg_box_code',1);
-        }
         
-        //echo $u_img;
-        
-        
-        else{
             DB::update("update user_info_tbl set user_name=?,user_mobile=?,live=?,versity_name=?,versity_department=?,versity_degree=?,collage_name=?,collage_group=?,school_name=?,school_group=? where user_id=?",[$u_name,$mobile,$live,$versity_name,$versity_department,$versity_degree,$collage_name,$collage_group,$school_name,$school_group,$u_id]);
-            Session::put('msg_box_code',1);
+            Session::put('msg_box_code',"ok");
             echo "else";
-        }
+        
         Session::put('u_name',$u_name);
         
         //return $this->about();
-        //return redirect('/blog/home');
+        return redirect('/about');
 
     }
     public function about(){
-        if(Session::get('msg_box_code_pblm')==0) Session::put('msg_box_code',"no");
+        
+        if(Session::get('msg_box_override_code')== 1) Session::put('msg_box_code',"no");
+        Session::put('msg_box_override_code',1);
         Session::put('msg_code',"");
         
         $u_id = Session::get('u_id');
         $data = DB::select("select * from user_info_tbl where user_id='$u_id' ");
         Session::put('msg_overlap_pblm',0);
+        
         return view('blog_about',['data'=>$data]);
     }
+    
     public function change_password(Request $request){
         
         Session::put('msg_box_override_code',0);
@@ -234,7 +221,7 @@ class blogController extends Controller
             
 
         }
-        return redirect('/blog/settings');
+        return redirect('/settings');
 
     }
     public function change_email(Request $request){
@@ -248,7 +235,7 @@ class blogController extends Controller
         $new_email= $request->input('new_email_txt');
         DB::update("update user_info_tbl set user_email=? where user_id=?",[$new_email,$u_id]);
 
-        return redirect('/blog/settings');
+        return redirect('/settings');
 
 
     }
@@ -262,6 +249,7 @@ class blogController extends Controller
         Session::put('msg_overlap_pblm',0);
         return view('blog_settings',['data'=>$data]);
     }
+    
     public function search(){
 
         $u_id = Session::get('u_id');

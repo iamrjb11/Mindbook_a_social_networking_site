@@ -109,8 +109,8 @@ foreach($host as $ht){
 
 <body>
 <nav class="navbar navbar-expand-sm bg-primary navbar-dark sticky-top">
-<a class="icon" href="{{Session::get('host_name')}}/blog/home" ><img src="/images/mindbook.png" alt="" class="sts_img"></a>
-<form class="navbar-form navbar-left" method="post" action="{{ URL::to('/blog/login') }}">
+<a class="icon" href="{{Session::get('host_name')}}/home" ><img src="/images/mindbook.png" alt="" class="sts_img"></a>
+<form class="navbar-form navbar-left" method="post" action="{{ URL::to('/login') }}">
   {{ csrf_field() }}
     <div class="form-group">
    
@@ -134,23 +134,23 @@ foreach($host as $ht){
   <div>
     <ul class="navbar-nav">
         <li class="nav-item" >
-        <a class="nav-link" href="{{Session::get('host_name')}}/blog/profile?u_id={{Session::get('u_id')}}"><img src="{{ Session::get('u_img') }}" class="img-rounded" style="width:25px;height:25px"> {{Session::get('u_name')}}</a>
+        <a class="nav-link" href="{{Session::get('host_name')}}/profile?u_id={{Session::get('u_id')}}"><img src="{{ Session::get('u_img') }}" class="img-rounded" style="width:25px;height:25px"> {{Session::get('u_name')}}</a>
         </li>
         <li class="nav-item" >
-        <a class="nav-link" href="{{Session::get('host_name')}}/blog/home">Home</a>
+        <a class="nav-link" href="{{Session::get('host_name')}}/home">Home</a>
         </li>
         
         <li class="nav-link" style="padding-left:10px;padding-right:60px;padding-top:11px;font-size:16px;">
           <div class="dropdown">
             <a href="#" class="nav-link" data-toggle="dropdown" style=""><span class="glyphicon glyphicon-triangle-bottom"></span></a>
             <ul class="dropdown-menu">
-              <li class="" ><a class="" href="{{Session::get('host_name')}}/blog/profile?u_id={{Session::get('u_id')}}" style="font-size:14px;color:blue;">{{Session::get('u_name')}}</a></li>
+              <li class="" ><a class="" href="{{Session::get('host_name')}}/profile?u_id={{Session::get('u_id')}}" style="font-size:14px;color:blue;">{{Session::get('u_name')}}</a></li>
               <li class="divider"></li>
               
-              <li><a href="{{Session::get('host_name')}}/blog/about"><span class="glyphicon glyphicon-user"></span> About</a></li>
-              <li><a href="{{Session::get('host_name')}}/blog/settings"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
+              <li><a href="{{Session::get('host_name')}}/about"><span class="glyphicon glyphicon-user"></span> About</a></li>
+              <li><a href="{{Session::get('host_name')}}/settings"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
               <li class="divider"></li>
-              <li><a href="{{Session::get('host_name')}}/blog/logout"> <span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
+              <li><a href="{{Session::get('host_name')}}/logout"> <span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
             </ul>
         </div>
       </li>
@@ -170,7 +170,7 @@ foreach($host as $ht){
     <div class="outlayer">
     <div>
         <img src="{{$data[0]->user_img}}" class="sts_img">
-        <a class="sts_name" href="{{Session::get('host_name')}}/blog/others_profile?other_id={{$data[0]->user_id}}">{{$data[0]->user_name}}</a><p>Time : <span style="color:#767a82">{{ $data[0]->time}}</span></p>
+        <a class="sts_name" href="{{Session::get('host_name')}}/others_profile?other_id={{$data[0]->user_id}}">{{$data[0]->user_name}}</a><p>Time : <span style="color:#767a82">{{ $data[0]->time}}</span></p>
         
         <?php 
             $data[0]->status= nl2br($data[0]->status);
@@ -180,11 +180,11 @@ foreach($host as $ht){
             <tr >
             <td ><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-thumbs-up" style="font-size:20px;"></span> </button></td>
             <td class="table_td">Likes : 0</td>
-            <td class="table_td"><a href="{{Session::get('host_name')}}/blog/comments?u_id={{$data[0]->user_id}}&post_id={{$data[0]->post_id}}" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-send" style="font-size:20px;"></span> </a></td>
+            <td class="table_td"><a href="{{Session::get('host_name')}}/comments?u_id={{$data[0]->user_id}}&post_id={{$data[0]->post_id}}" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-send" style="font-size:20px;"></span> </a></td>
             <td class="table_td">Comments : {{$num_cmnt[0]->sum}}</td>
             </tr>
         </table><br>
-        <form method="post" action="{{ URL::to('/blog/create_comment') }}">
+        <form method="post" action="{{ URL::to('/create_comment') }}">
         {{ csrf_field() }}  
         
             <textarea rows="" cols="" name="cmnt_txt" class="textarea" placeholder="Write your comment ..."></textarea><br> 
@@ -198,7 +198,7 @@ foreach($host as $ht){
     @foreach($cmnts as $ct)
     <div>
         <img src="{{$ct->user_img}}" class="comment_sts_img">
-        <a class="comment_sts_name" href="{{Session::get('host_name')}}/blog/others_profile?other_id={{$ct->user_id}}">{{$ct->user_name}}</a><p style="font-size:12px;">Time : <span style="color:#767a82">{{ $ct->comment_time}}</span></p>
+        <a class="comment_sts_name" href="{{Session::get('host_name')}}/others_profile?other_id={{$ct->user_id}}">{{$ct->user_name}}</a><p style="font-size:12px;">Time : <span style="color:#767a82">{{ $ct->comment_time}}</span></p>
         
         <?php 
             $ct->comment = nl2br($ct->comment_text);

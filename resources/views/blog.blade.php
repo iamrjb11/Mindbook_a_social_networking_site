@@ -62,7 +62,7 @@ include "../resources/views/templates/resourcesFile.php";
       </a>
     </div>
     
-    <form class="navbar-form navbar-left" method="post" action="{{ URL::to('/blog/login') }}">
+    <form class="navbar-form navbar-left" method="post" action="{{ URL::to('/login') }}">
     {{ csrf_field() }}
       <div class="form-group">
         <input type="text" class="form-control" name="email" placeholder="Email" required>
@@ -81,7 +81,7 @@ include "../resources/views/templates/resourcesFile.php";
   <img src="/images/23.png" style="padding-top:30px;width:100%;"><br>
   <p style="text-align:center;font-size:25px;font-weight:bold;">Think and write whats are your mind ....</>
 </div>
-<form method="post" enctype="multipart/form-data" action="{{ URL::to('/blog/signup') }}" style="padding-left:3%;padding-right:3%;">
+<form method="post" enctype="multipart/form-data" action="{{ URL::to('/signup') }}" style="padding-left:3%;padding-right:3%;">
   {{ csrf_field() }}
   <div  class="box">
   <div class="signupTxt">Sign up</div><br>
