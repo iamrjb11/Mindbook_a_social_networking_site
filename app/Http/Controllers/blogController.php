@@ -18,44 +18,34 @@ class blogController extends Controller
     public function blog(){
         
     }
+    
     //
     public function signup(Request $request){
         //echo "Good<br>";
         Session::put('msg_overlap_pblm',1);
-        Session::put('msg_code',"success");
-        Session::put('msg_text',"Sing up completed");
+
         $u_name = $request->input('u_name');
         $u_email = $request->input('u_email');
         $u_password = $request->input('u_password');
         $u_mobile = $request->input('u_mobile');
+        
         $u_img="Null";
-
+        
         $this->validate($request, [
-            'u_img' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            'u_img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
         
-        if ($request->hasFile('u_img')) {
-            Session::put('msg_code',"success");
-            Session::put('msg_text',"Sing up completed");
-            //echo "Good2<br>";
-            $image = $request->file('u_img');
-            $u_img = time().'.'.$image->getClientOriginalExtension();
-            $destinationPath = public_path('/images');
-            $image->move($destinationPath, $u_img);
-            $u_img = "/"."images"."/".$u_img;
+        Session::put('msg_code',"success");
+        Session::put('msg_text',"Sing up completed");
         
-
-            DB::insert("insert into user_info_tbl (user_name,user_email,user_password,user_mobile,user_img) values(?,?,?,?,?)",[$u_name,$u_email,$u_password,$u_mobile,$u_img]);
-            
+        $image = $request->file('u_img');
+        $u_img = rand().'.'.$image->getClientOriginalExtension();
+        $destinationPath = public_path('/images');
+        $image->move($destinationPath, $u_img);
+        $u_img = "/"."images"."/".$u_img;
     
-            //return back()->with('success','Image Upload successfully');
-        }
-        else {
-            Session::put('msg_code',"fail");
-            Session::put('msg_text',"Failed to sing up !");
-        }
-        //$u_img = $request->input('u_img');
-        
+        DB::insert("insert into user_info_tbl (user_name,user_email,user_password,user_mobile,user_img) values(?,?,?,?,?)",[$u_name,$u_email,$u_password,$u_mobile,$u_img]);
+        //return back()->with('success','Image Upload successfully');   
         return view('blog');
     }
 
@@ -92,7 +82,7 @@ class blogController extends Controller
         Session::put('msg_code',"success");
         Session::put('msg_text',"Logged out !");
         
-        return view('blog');
+        return redirect('/');
     }
     public function login_failed(){
         Session::put('msg_code',"fail");

@@ -153,7 +153,7 @@ include "../resources/views/templates/resourcesFile.php";
 <nav class="navbar navbar-expand-sm bg-primary navbar-dark sticky-top">
 
   <a class="nav-link" href="{{Session::get('host_name')}}/blog/home" style="padding-left:5%;"><img src="/images/mindbook.png" alt="" class="sts_img"></a>
-  <form class="navbar-form navbar-left" method="post" action="{{ URL::to('/blog/login') }}">
+  <form class="navbar-form navbar-left" method="post" action="{{ URL::to('/blog/login') }}"></form>
     {{ csrf_field() }}
       <div class="form-group">
       <div class="dropdown">

@@ -1,9 +1,15 @@
 <?php
+use \App\Http\Controllers\blogController;
 Session::put('title','My Blog');
 include "../resources/views/templates/resourcesFile.php";
-
-
+// if(count($errors)>0){
+//   Session::put('msg_overlap_pblm',1);
+//   Session::put('msg_code',"fail");
+//   Session::put('msg_text',"Failed to sing up !");
+//   blogController::reloadME();
+// }
 ?>
+
 <head>
   <style>
   .box{
@@ -66,7 +72,11 @@ include "../resources/views/templates/resourcesFile.php";
     </form>
   </div>
 
-</nav><br><br>
+</nav>
+@if(count($errors) > 0)
+
+@endif
+<br><br>
 <div style="float:left">
   <img src="/images/23.png" style="padding-top:30px;width:100%;"><br>
   <p style="text-align:center;font-size:25px;font-weight:bold;">Think and write whats are your mind ....</>
@@ -80,7 +90,10 @@ include "../resources/views/templates/resourcesFile.php";
     <input type="text" name="u_password" value="" class="form-control" placeholder="Password" required><br>
     <input type="text" name="u_mobile" value="" class="form-control" placeholder="Mobile Number"required><br>
     <input type="file" name="u_img" value="" class="form-control" required><br>
-    <input type="submit" name="" class="btn btn-primary" value="Sing up">
+    <input type="submit" name="" class="btn btn-primary" value="Sing up" style="width:100%;"><br>
+    @if(count($errors)>0)
+    <p style="color:red;padding-top:10px;">* Failed to sing up. Please check all the information.</p>
+    @endif
     
   </div>
 </form>

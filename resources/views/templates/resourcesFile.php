@@ -22,7 +22,7 @@
 
     <script>
         $(document).ready(function(){
-        console.log("in->");
+        console.log("message show code->");
         <?php if(Session::get('msg_code') =="success"){ ?>
     
             var temp = '<div class="alert alert-info alert-dismissable" style="background-color:#55d33f;color:white;">'+
