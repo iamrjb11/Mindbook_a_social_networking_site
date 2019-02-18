@@ -111,6 +111,17 @@ include "../resources/views/templates/resourcesFile.php";
 
 
 <div style="padding:0px 10%">
+
+
+<div style="text-align:center;font-size:20px;">
+  @if (Session::get('msg_box_code') == "ok")
+    <p style="color:green;">Successfully changed your data</p>
+  @elseif (Session::get('msg_box_code')== "fail")
+    <p style="color:red;">Failed to change your data</p>
+  
+  @endif
+</div>
+
 <div class="about_txt">
 <span class="glyphicon glyphicon-cog"></span> Settings
 </div><br>

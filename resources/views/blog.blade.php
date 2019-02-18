@@ -92,7 +92,7 @@ include "../resources/views/templates/resourcesFile.php";
     <input type="file" name="u_img" value="" class="form-control" required><br>
     <input type="submit" name="" class="btn btn-primary" value="Sing up" style="width:100%;"><br>
     @if(count($errors)>0)
-    <p style="color:red;padding-top:10px;">* Failed to sing up. Please check all the information.</p>
+    <p style="color:red;padding-top:10px;">* Failed to sing up. Please check all the information.Maximum image size is 2MB.</p>
     @endif
     
   </div>

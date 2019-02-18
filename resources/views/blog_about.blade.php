@@ -28,6 +28,7 @@ include "../resources/views/templates/resourcesFile.php";
       border-bottom:2px solid #007bff;
       box-shadow: 0 0 20px rgba(0,0,0,.15);
     }
+    
     .about_txt{
       background-color:white;
       font-size:25px;
@@ -68,6 +69,7 @@ include "../resources/views/templates/resourcesFile.php";
     $(document).ready(function(){
       $('#school_group option[value={{$data[0]->school_group}}]').attr('selected','selected');
     });
+    
   </script>
 </head>
 <body>
@@ -124,10 +126,24 @@ include "../resources/views/templates/resourcesFile.php";
 
 </nav>
 
+
 <div style="padding:0px 10%">
+
+<div style="text-align:center;font-size:20px;">
+  @if(Session::get('msg_box_code')==1)
+    <p style="color:green;">Successfully saved all</p>
+  @else
+    <p style="color:red;">Failed saved all</p>
+  @endif
+</div>
+
 <div class="about_txt">
 <span class="glyphicon glyphicon-user"></span> About
-</div><br>
+</div>
+
+
+
+<br>
 <div class="div_form">
   <form class="form-horizontal" enctype="multipart/form-data"  method="post" action="{{ URL::to('/blog/save_about') }}">
   {{ csrf_field() }}
@@ -140,36 +156,37 @@ include "../resources/views/templates/resourcesFile.php";
         
         </div>
         <div class="form-group">
-        <label class="control-label col-sm-2" for="email">Profile Picture :</label>
-        <div class="col-sm-10">
+        <label class="control-label col-sm-3" for="email">Profile Picture :</label>
+        <div class="col-sm-9">
           <input type="file" class="form-control" id="email" placeholder="" name="pro_img" value="{{$data[0]->user_name}}" >
+          <p style="color:red;padding-top:10px;">*Maximum size is 2MB</p>
         </div>
       </div>
       <div class="form-group">
-        <label class="control-label col-sm-2" for="email">Full Name :</label>
-        <div class="col-sm-10">
+        <label class="control-label col-sm-3" for="email">Full Name :</label>
+        <div class="col-sm-9">
           <input type="text" class="form-control" id="email" placeholder="Full Name" name="name_txt" value="{{$data[0]->user_name}}" required>
         </div>
       </div>
       <div class="form-group">
-        <label class="control-label col-sm-2" for="live_txt">Lives in :</label>
-        <div class="col-sm-10">
+        <label class="control-label col-sm-3" for="live_txt">Lives in :</label>
+        <div class="col-sm-9">
           <input type="text" class="form-control" id="live_txt" placeholder="Enter city name" name="live_txt" value="{{$data[0]->live}}">
         </div>
       </div>
       <div class="form-group">
-        <label class="control-label col-sm-2" for="mobile_txt">Contact Number :</label>
+        <label class="control-label col-sm-3" for="mobile_txt">Contact Number :</label>
         <div class="col-sm-2" >
           <input type="text" class="form-control" id="mobile_code_txt" placeholder="" name="mobile_code_txt" value="BD | +88" readonly>
         </div>
-        <div class="col-sm-8">
+        <div class="col-sm-7">
           <input type="text" class="form-control" id="mobile_txt" placeholder="Enter mobile number" name="mobile_txt" value="{{$data[0]->user_mobile}}">
         </div>
       </div>
 
 
       <div class="form-group">
-        <label class="control-label col-sm-2" for="email">University Info :-</label>
+        <label class="control-label col-sm-3" for="email">University Info :-</label>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-4" for="email">University Name :</label>
@@ -203,7 +220,7 @@ include "../resources/views/templates/resourcesFile.php";
 
 
       <div class="form-group">
-        <label class="control-label col-sm-2" for="email">Collage Info :-</label>
+        <label class="control-label col-sm-3" for="email">Collage Info :-</label>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-4" for="email">Collage Name :</label>
@@ -232,7 +249,7 @@ include "../resources/views/templates/resourcesFile.php";
         </div>
       </div>
       <div class="form-group">
-        <label class="control-label col-sm-2" for="email">School Info :-</label>
+        <label class="control-label col-sm-3" for="email">School Info :-</label>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-4" for="email">School Name :</label>
