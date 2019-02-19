@@ -68,7 +68,7 @@ include "../resources/views/templates/resourcesFile.php";
 <nav class="navbar navbar-expand-sm bg-primary navbar-dark">
 
   <div class="container-fluid">
-    <div class="navbar-header"  style="padding-right:500px;"><a href="#" style="color:white;font-size:27px;text-decoration: none;">
+    <div class="navbar-header"  style="padding-right:500px;"><a href="{{Session::get('host_name')}}/mindbook" style="color:white;font-size:27px;text-decoration: none;">
     
       <div class="web_name" style=""><img src="/images/mindbook.png" alt="" style="width:40px;height:34px;"> Mindbook</div>
       </a>
