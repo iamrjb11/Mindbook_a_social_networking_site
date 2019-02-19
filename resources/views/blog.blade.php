@@ -1,6 +1,6 @@
 <?php
 use \App\Http\Controllers\blogController;
-Session::put('title','My Blog');
+Session::put('title','Mindbook');
 include "../resources/views/templates/resourcesFile.php";
 // if(count($errors)>0){
 //   Session::put('msg_overlap_pblm',1);

@@ -14,13 +14,11 @@
 //For blog
 Route::get('/',function(){
     if(Session::get('msg_overlap_pblm') != 1) Session::put('msg_code',"");
-        $full=url()->current();
-        //return view('blog');
-        $crop = Request::getRequestUri();
-        //echo $crop;
-        $host = explode($crop,$full,2);
-        Session::put('host_name',$host[0]);
-        //echo $host[0];
+        $host_url=url()->current();
+        //echo $host_url;
+        
+        Session::put('host_name',$host_url);
+        
         Session::put('msg_overlap_pblm', 0);
         //for check user logged in or not
         Session::put('login_code',0);
