@@ -22,9 +22,17 @@ Route::get('/',function(){
         Session::put('host_name',$host[0]);
         //echo $host[0];
         Session::put('msg_overlap_pblm', 0);
+        //for check user logged in or not
+        Session::put('login_code',0);
         
-        return view('blog');
+        return view('mindbook_info');
 });
+Route::get('/mindbook',function(){
+    return view('blog');
+});
+Route::group(['middleware'=>'mb'],function(){
+    
+
 Route::get('/logout','mindbookController@logout');
 //For all get requests
 
@@ -53,7 +61,7 @@ Route::post('/change_email','mindbookController@change_email');
 Route::post('/create_comment','mindbookController@create_comment');
 
 
-
+});
 
 
 

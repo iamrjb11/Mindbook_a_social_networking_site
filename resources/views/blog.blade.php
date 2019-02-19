@@ -19,16 +19,23 @@ include "../resources/views/templates/resourcesFile.php";
     padding-right:6%;
     padding-left:2%;
     padding-top:1%;
-    padding-bottom:1%;
-    width:40%;
+    padding-bottom:5%;
+    width:150%;
     border-left: 5px solid #9b2;
     box-shadow: 0 0 20px rgba(0,0,0,.15);
+    background-color:#b6ccef;
+  }
+  .signup_form{
+    padding-left:3%;
+    padding-right:3%;
+    float:right;
+    
   }
   .signupTxt{
     border-bottom: 2px solid black;
     font-size:30px;
     font-weight:bold;
-    color:#f08080;
+    color:#138906;
   }
   @media only screen and (max-width: 700px){
     .box{
@@ -41,6 +48,11 @@ include "../resources/views/templates/resourcesFile.php";
       border-left: 5px solid #9b2;
       border-right: 5px solid #9b2;
       box-shadow: 0 0 20px rgba(0,0,0,.15);
+      
+    }
+    .signup_form{
+      float:none;
+      width:100%;
     }
     .web_name{
       width:100%;
@@ -52,7 +64,7 @@ include "../resources/views/templates/resourcesFile.php";
 
 
     
-<body>
+<body style="background-color:white;">
 <nav class="navbar navbar-expand-sm bg-primary navbar-dark">
 
   <div class="container-fluid">
@@ -78,11 +90,12 @@ include "../resources/views/templates/resourcesFile.php";
 @endif
 <br><br>
 <div style="float:left">
-  <img src="/images/23.png" style="padding-top:30px;width:100%;"><br>
-  <p style="text-align:center;font-size:25px;font-weight:bold;">Think and write whats are your mind ....</>
+  <img src="/images/mb_img.png" style="padding-top:30px;width:90%;padding-left:5%;"><br>
+  <p style="text-align:center;font-size:25px;font-weight:bold;">Think and share whats are your mind ....</>
 </div>
-<form method="post" enctype="multipart/form-data" action="{{ URL::to('/signup') }}" style="padding-left:3%;padding-right:3%;">
+<form method="post" enctype="multipart/form-data" action="{{ URL::to('/signup') }}" class="signup_form">
   {{ csrf_field() }}
+  <p class="p_tag"></p>
   <div  class="box">
   <div class="signupTxt">Sign up</div><br>
     <input type="text" name="u_name" value="" class="form-control" placeholder="Full Name" required><br>
@@ -90,7 +103,7 @@ include "../resources/views/templates/resourcesFile.php";
     <input type="text" name="u_password" value="" class="form-control" placeholder="Password" required><br>
     <input type="text" name="u_mobile" value="" class="form-control" placeholder="Mobile Number"required><br>
     <input type="file" name="u_img" value="" class="form-control" required><br>
-    <input type="submit" name="" class="btn btn-primary" value="Sing up" style="width:100%;"><br>
+    <input type="submit" name="" class="btn btn-primary" value="Sign up" style="width:100%;"><br>
     @if(count($errors)>0)
     <p style="color:red;padding-top:10px;">* Failed to sing up. Please check all the information.Maximum image size is 2MB.</p>
     @endif

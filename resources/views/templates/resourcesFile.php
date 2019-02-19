@@ -11,12 +11,12 @@
     <link rel="stylesheet" href="/bstp4/css/bootstrap.min.css">
     <link rel="stylesheet" type="" href="/bstp3/css/bootstrap.css">
     <link rel="stylesheet" href="/bstp3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/blog.me.css">
+    <link rel="stylesheet" href="/css/mindbook.me.css">
     
     <script src="/bstp3/js/jquery.min.js"></script>
     <script src="/bstp3/js/bootstrap.min.js"></script>
     <script src="/bstp3/js/jquery-3.2.1.min.js"></script>
-    <script src="/js/blog.me.js"></script>
+    <script src="/js/mindbook.me.js"></script>
 
 
 

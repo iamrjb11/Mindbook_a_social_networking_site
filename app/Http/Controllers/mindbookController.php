@@ -69,6 +69,8 @@ class mindbookController extends Controller
                     Session::put('msg_overlap_pblm',1);
                     Session::put('msg_code',"success");
                     Session::put('msg_text',"Logged in");
+                    //for check user logged in or not
+                    Session::put('login_code',1);
                     return redirect('/home');
                 }
                 else return $this->login_failed();
@@ -82,7 +84,7 @@ class mindbookController extends Controller
         Session::put('msg_code',"success");
         Session::put('msg_text',"Logged out !");
         
-        return redirect('/');
+        return redirect('/mindbook');
     }
     public function login_failed(){
         Session::put('msg_code',"fail");
