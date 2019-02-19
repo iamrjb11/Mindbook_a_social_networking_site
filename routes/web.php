@@ -30,7 +30,7 @@ Route::get('/',function(){
 Route::get('/mindbook',function(){
     return view('blog');
 });
-Route::group(['middleware'=>'mb'],function(){
+
     
 
 Route::get('/logout','mindbookController@logout');
@@ -61,7 +61,7 @@ Route::post('/change_email','mindbookController@change_email');
 Route::post('/create_comment','mindbookController@create_comment');
 
 
-});
+
 
 
 
