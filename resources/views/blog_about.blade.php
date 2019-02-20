@@ -70,7 +70,19 @@ include "../resources/views/templates/resourcesFile.php";
       $('#school_group option[value={{$data[0]->school_group}}]').attr('selected','selected');
     });
     
-  </script>
+  
+  function checkFile(){
+    if( document.getElementById("img_file").files.length == 0 ){
+      console.log("not selected");
+      {{Session::put('file_sts',"NO")}}
+    }
+    else{ 
+      console.log("Selected");
+      {{Session::put('file_sts',"1234")}}
+    }
+  }
+    </script>
+
 </head>
 <body>
 <nav class="navbar navbar-expand-sm bg-primary navbar-dark sticky-top">
@@ -133,7 +145,7 @@ include "../resources/views/templates/resourcesFile.php";
   @if (Session::get('msg_box_code')== "ok")
     <p style="color:green;">Successfully saved all</p>
   @elseif (Session::get('msg_box_code') =="fail")
-    <p style="color:red;">Failed saved all</p>
+    <p style="color:red;">Failed saved all. Please check your image size and type.</p>
   @endif
 </div>
 
@@ -158,7 +170,7 @@ include "../resources/views/templates/resourcesFile.php";
         <div class="form-group">
         <label class="control-label col-sm-3" for="email">Profile Picture :</label>
         <div class="col-sm-9">
-          <input type="file" class="form-control" id="email" placeholder="" name="pro_img" value="{{$data[0]->user_name}}" >
+          <input type="file" class="form-control" id="img_file" placeholder="" name="pro_img" value="" >
           <p style="color:red;padding-top:10px;">*Maximum size is 2MB</p>
         </div>
       </div>
@@ -281,10 +293,11 @@ include "../resources/views/templates/resourcesFile.php";
      <br>
       <div class="form-group">        
         <div class="col-sm-offset-2 col-sm-10">
-          <input type="submit" class="btn btn-success" style="width:100%" value="Save">
+          <input type="submit" class="btn btn-success" onclick="checkFile();" style="width:100%" value="Save">
         </div>
       </div>
   </form>
 </div>
 </div><br><br>
 </body>
+<?php echo Session::get('file_sts'); ?>

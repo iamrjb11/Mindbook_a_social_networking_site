@@ -22,6 +22,7 @@ Route::get('/',function(){
         Session::put('msg_overlap_pblm', 0);
         //for check user logged in or not
         Session::put('login_code',0);
+        Session::put('file_sts',0);
         
         return view('mindbook_info');
 });

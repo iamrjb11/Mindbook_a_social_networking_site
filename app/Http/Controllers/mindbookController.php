@@ -169,15 +169,31 @@ class mindbookController extends Controller
         $collage_group = $request->input('collage_group');
         $school_name = $request->input('school_name');
         $school_group = $request->input('school_group');
-        //$u_img =$request->file('u_img');
-        //echo $u_img;
 
-        
+        $u_img =$request->file('pro_img');
+        Session::put('msg_box_code',"fail");
+      
+        if($u_img){
+
+            $this->validate($request, [
+                'pro_img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            ]);
+            $image = $u_img;
+            $u_img = rand().'.'.$image->getClientOriginalExtension();
+            $destinationPath = public_path('/images');
+            $image->move($destinationPath, $u_img);
+            $u_img = "/"."images"."/".$u_img;
+            DB::update("update user_info_tbl set user_name=?,user_img=?,user_mobile=?,live=?,versity_name=?,versity_department=?,versity_degree=?,collage_name=?,collage_group=?,school_name=?,school_group=? where user_id=?",[$u_name,$u_img,$mobile,$live,$versity_name,$versity_department,$versity_degree,$collage_name,$collage_group,$school_name,$school_group,$u_id]);
+            Session::put('msg_box_code',"ok");
+        }
+        else{
             DB::update("update user_info_tbl set user_name=?,user_mobile=?,live=?,versity_name=?,versity_department=?,versity_degree=?,collage_name=?,collage_group=?,school_name=?,school_group=? where user_id=?",[$u_name,$mobile,$live,$versity_name,$versity_department,$versity_degree,$collage_name,$collage_group,$school_name,$school_group,$u_id]);
             Session::put('msg_box_code',"ok");
-            echo "else";
+        }
+            
         
         Session::put('u_name',$u_name);
+        //echo Session::get('file_sts');
         
         //return $this->about();
         return redirect('/about');
