@@ -114,7 +114,7 @@ foreach($host as $ht){
   <div>
     <ul class="navbar-nav">
         <li class="nav-item" >
-        <a class="nav-link" href="{{Session::get('host_name')}}/profile?u_id={{Session::get('u_id')}}"><img src="{{ Session::get('u_img') }}" class="img-rounded" style="width:25px;height:25px"> {{Session::get('u_name')}}</a>
+        <a class="nav-link" href="{{Session::get('host_name')}}/profile?u_id={{Session::get('u_id')}}"><img src="{{ $user_data[0]->user_img }}" class="img-rounded" style="width:25px;height:25px"> {{$user_data[0]->user_name}}</a>
         </li>
         <li class="nav-item" >
         <a class="nav-link" href="{{Session::get('host_name')}}/home">Home</a>
@@ -124,7 +124,7 @@ foreach($host as $ht){
           <div class="dropdown">
             <a href="#" class="nav-link" data-toggle="dropdown" style=""><span class="glyphicon glyphicon-triangle-bottom"></span></a>
             <ul class="dropdown-menu">
-              <li class="" ><a class="" href="{{Session::get('host_name')}}/profile?u_id={{Session::get('u_id')}}" style="font-size:14px;color:blue;">{{Session::get('u_name')}}</a></li>
+              <li class="" ><a class="" href="{{Session::get('host_name')}}/profile?u_id={{Session::get('u_id')}}" style="font-size:14px;color:blue;">{{$user_data[0]->user_name}}</a></li>
               <li class="divider"></li>
               
               <li><a href="{{Session::get('host_name')}}/about"><span class="glyphicon glyphicon-user"></span> About</a></li>

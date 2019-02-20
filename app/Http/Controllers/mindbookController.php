@@ -92,6 +92,8 @@ class mindbookController extends Controller
         return view('blog');
     }
     public function home(){
+        $u_id = Session::get('u_id'); 
+
         if(Session::get('msg_overlap_pblm') != 1){
             Session::put('msg_code',"");
         }
@@ -102,11 +104,12 @@ class mindbookController extends Controller
         $todays_time = date("g:i a , j F Y");  
         //echo $today;
         $data = DB::select("select * from users_posts_tbl inner join user_info_tbl on users_posts_tbl.user_id=user_info_tbl.user_id order by post_id DESC");
+        $user_data = DB::select("select * from user_info_tbl where user_id='$u_id' ");
         //$num_cmnt = DB::select("select count(*) as sum from comments_tbl group by post_id order by post_id DESC ");
         
        
         Session::put('msg_overlap_pblm',0);
-        return view('blog_home',['data'=>$data]);
+        return view('blog_home',['data'=>$data,'user_data'=>$user_data]);
     }
     public function demo(){
         //For Time
