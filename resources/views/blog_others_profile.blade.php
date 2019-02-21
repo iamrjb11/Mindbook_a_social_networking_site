@@ -281,9 +281,9 @@ include "../resources/views/templates/resourcesFile.php";
       <table style="background-color:#e9ebee;width:100%" >
         <tr style="padding:0px 0px;">
           <td style="padding:0px 0px;"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-thumbs-up" style="font-size:20px;"></span> </button></td>
-          <td style="padding:0px 5%;">Likes : 0</td>
-          <td style="padding:0px 5%;"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-send" style="font-size:20px;"></span> </button></td>
-          <td style="padding:0px 5%;">Comments : 0</td>
+          <td style="padding:0px 5%;">Likes : {{$dt->likes}}</td>
+          <td style="padding:0px 5%;"><a href="{{Session::get('host_name')}}/comments?u_id={{$dt->user_id}}&post_id={{$dt->post_id}}" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-send" style="font-size:20px;"></span> </a></td>
+          <td style="padding:0px 5%;">Comments : {{$dt->comments}}</td>
         </tr>
       </table>
     
