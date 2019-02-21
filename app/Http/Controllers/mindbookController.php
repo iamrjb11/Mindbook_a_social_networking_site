@@ -305,10 +305,11 @@ class mindbookController extends Controller
         Session::put('current_url',$current_url);
         //echo  Session::get('current_url'); 
         Session::put('msg_code',"");  
-        $u_id = Input::get('u_id'); 
+        $u_id = Session::get('u_id');
+        $others_id = Input::get('u_id'); 
         $post_id = Input::get('post_id');
         Session::put('post_id',$post_id);
-        $data = DB::select("select * from user_info_tbl inner join users_posts_tbl on users_posts_tbl.user_id='$u_id' and user_info_tbl.user_id='$u_id' and users_posts_tbl.post_id='$post_id' ");
+        $data = DB::select("select * from user_info_tbl inner join users_posts_tbl on users_posts_tbl.user_id='$others_id' and user_info_tbl.user_id='$others_id' and users_posts_tbl.post_id='$post_id' ");
         $cmnts = DB::select("select * from user_info_tbl inner join comments_tbl on user_info_tbl.user_id=comments_tbl.other_user_id and comments_tbl.post_id='$post_id' order by comments_tbl.comment_id DESC");
         $user_data = DB::select("select * from user_info_tbl where user_id='$u_id' ");
         
