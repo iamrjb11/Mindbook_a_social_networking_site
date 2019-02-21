@@ -294,8 +294,8 @@ class mindbookController extends Controller
         $u_id = Session::get('u_id'); // if(Session::has('panier')) for check
             
 
-        $data = DB::select("select * from user_info_tbl inner join users_posts_tbl on users_posts_tbl.user_id='$u_id' and user_info_tbl.user_id='$u_id' order by post_id DESC");
-        $others_info = DB::select("select * from user_info_tbl where user_id='$other_id' ");
+        $others_info  = DB::select("select * from user_info_tbl inner join users_posts_tbl on users_posts_tbl.user_id='$other_id' and user_info_tbl.user_id='$other_id' order by post_id DESC");
+        $data = DB::select("select * from user_info_tbl where user_id='$u_id' ");
         
         //return view('blog_profile',['data'=>$data]);
         return view('blog_others_profile',['data'=>$data,'others_info'=>$others_info]);
@@ -310,6 +310,7 @@ class mindbookController extends Controller
         Session::put('post_id',$post_id);
         $data = DB::select("select * from user_info_tbl inner join users_posts_tbl on users_posts_tbl.user_id='$u_id' and user_info_tbl.user_id='$u_id' and users_posts_tbl.post_id='$post_id' ");
         $cmnts = DB::select("select * from user_info_tbl inner join comments_tbl on user_info_tbl.user_id=comments_tbl.other_user_id and comments_tbl.post_id='$post_id' order by comments_tbl.comment_id DESC");
+        $user_data = DB::select("select * from user_info_tbl where user_id='$u_id' ");
         
         //updated comments number in users_posts_tbl
         $num_cmnt = DB::select("select count(*) as sum,post_id from comments_tbl group by post_id  ");
@@ -320,7 +321,7 @@ class mindbookController extends Controller
 
         $num_cmnt = DB::select("select count(*) as sum from comments_tbl where post_id='$post_id'  ");
 
-        return view('mb_comments',['data'=>$data,'cmnts'=>$cmnts,'num_cmnt'=>$num_cmnt]);
+        return view('mb_comments',['data'=>$data,'cmnts'=>$cmnts,'num_cmnt'=>$num_cmnt,'user_data'=>$user_data]);
         //echo "<pre>".$cmnts[0]->user_name."</pre>";
     }
     public function create_comment(Request $request){
