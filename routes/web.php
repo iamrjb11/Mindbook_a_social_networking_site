@@ -42,6 +42,7 @@ Route::get('/profile','mindbookController@profile');
 Route::get('/about','mindbookController@about');
 Route::get('/settings','mindbookController@settings');
 Route::get('/search','mindbookController@search');
+Route::get('/sts','mindbookController@loadStatus');
 Route::get('/others_profile','mindbookController@others_profile');
 Route::get('/comments','mindbookController@comments');
 

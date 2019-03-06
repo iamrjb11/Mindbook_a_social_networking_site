@@ -1,3 +1,5 @@
+
+
 function search(val){
     var search_value = val;
     //console.log("Search Value : "+search_value);
@@ -28,6 +30,19 @@ function search(val){
         document.getElementById("drop_content").innerHTML = "";
     }
     
+  }
+  function loadsts(){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function(){
+     //console.log("OK");
+        if(this.readyState == 4 && this.status == 200){    
+            if(this.responseText!="NO")
+              document.getElementById("sts").innerHTML = this.responseText;
+        }
+    };
+    
+    xhttp.open("GET","/sts",true);
+    xhttp.send();
   }
 
 //how to check enter key code when write a status in textarea textbox

@@ -107,7 +107,9 @@ class mindbookController extends Controller
         $user_data = DB::select("select * from user_info_tbl where user_id='$u_id' ");
         //$num_cmnt = DB::select("select count(*) as sum from comments_tbl group by post_id order by post_id DESC ");
         
+        $countStatus = DB::select("select count(post_id) as count from users_posts_tbl");
        
+        Session::put('countStatus',$countStatus[0]->count);
         Session::put('msg_overlap_pblm',0);
         return view('blog_home',['data'=>$data,'user_data'=>$user_data]);
     }
@@ -147,7 +149,7 @@ class mindbookController extends Controller
         date_default_timezone_set("Asia/Dhaka");
         $todays_time = date("g:i a , j F Y");  
         $status = $request->get('status');
-        DB::insert("insert into users_posts_tbl (user_id,status,time,likes) values(?,?,?,?)",[$u_id,$status,$todays_time,0]);
+        DB::insert("insert into users_posts_tbl (user_id,status,time,likes,show_sts) values(?,?,?,?,?)",[$u_id,$status,$todays_time,0,0]);
         
         return redirect('/home');
 
@@ -345,6 +347,26 @@ class mindbookController extends Controller
         
         return redirect(Session::get('current_url'));
         //echo "<pre>".$cmnts[0]->user_name."</pre>";
+    }
+    public function loadStatus(){
+
+        //$data = DB::select("select * from user_info_tbl inner join users_posts_tbl on users_posts_tbl.user_id='$u_id' and user_info_tbl.user_id='$u_id' and users_posts_tbl.post_id='$post_id' ");
+        $countStatus = DB::select("select count(post_id) as count from users_posts_tbl");
+        $curSts = $countStatus[0]->count;
+        $oldSts= Session::get('countStatus');
+        Session::put('countStatus',$curSts);
+        if($curSts > $oldSts){
+            $data = DB::select("select * from users_posts_tbl inner join user_info_tbl on users_posts_tbl.user_id=user_info_tbl.user_id order by post_id DESC");
+            DB::update("update users_posts_tbl set show_sts='1' where show_sts='0' ");
+            return view('create_post',['data'=>$data]);
+        }
+        else{
+            $res = "NO";
+            return $res;
+        }
+        
+        
+        
     }
 
 }
