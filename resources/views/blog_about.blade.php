@@ -6,7 +6,7 @@ Session::put('title',$data[0]->user_name.' | About');
 
 include "../resources/views/templates/resourcesFile.php";
 
-
+ 
 
 ?>
 <head>
